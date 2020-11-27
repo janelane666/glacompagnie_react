@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Glacons from './components/glacons';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  state = {
+    glacons: []
+  }
+
+  componentDidMount() {
+    fetch('https://glacompagnie-api.herokuapp.com/api/v1/glacons')
+      .then(res => res.json())
+      .then((data) => {
+        this.setState({ glacons: data })
+      })
+      .catch(console.log)
+  }
+
+  render () {
+    return (
+      <Glacons glacons={this.state.glacons} />
+    );
+  }
 }
 
 export default App;
