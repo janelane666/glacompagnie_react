@@ -1,26 +1,31 @@
-import React, { Component } from 'react';
-import Glacons from './components/glacons';
+import React, { Component } from "react";
+// import GlaconCards from "./components/GlaconCard";
+import HomePage from "./screens/HomePage";
+import Header from "./components/Header";
+import { Grid } from "@material-ui/core";
 
 class App extends Component {
+	state = {
+		glacons: [],
+	};
 
-  state = {
-    glacons: []
-  }
+	componentDidMount() {
+		fetch("https://glacompagnie-api.herokuapp.com/api/v1/glacons")
+			.then((res) => res.json())
+			.then((data) => {
+				this.setState({ glacons: data });
+			})
+			.catch(console.log);
+	}
 
-  componentDidMount() {
-    fetch('https://glacompagnie-api.herokuapp.com/api/v1/glacons')
-      .then(res => res.json())
-      .then((data) => {
-        this.setState({ glacons: data })
-      })
-      .catch(console.log)
-  }
-
-  render () {
-    return (
-      <Glacons glacons={this.state.glacons} />
-    );
-  }
+	render() {
+		return (
+			<Grid>
+				<Header />
+				<HomePage glacons={this.state.glacons} />
+			</Grid>
+		);
+	}
 }
 
 export default App;
