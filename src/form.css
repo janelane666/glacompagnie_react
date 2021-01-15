@@ -1,0 +1,83 @@
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  
+  body {
+    background-color: rgba(100, 149, 237, 0.05);
+    margin: auto;
+  }
+  
+  h1 {
+    color: cornflowerblue;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  
+  form {
+    background: white;
+    width: 450px;
+    margin: auto;
+    margin-top: 50px;
+    padding: 30px;
+    border-radius: 8px;
+    -webkit-box-shadow: 2px 2px 40px 10px rgba(100, 149, 237, 0.2);
+            box-shadow: 2px 2px 40px 10px rgba(100, 149, 237, 0.2);
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  input {
+    background-color: rgba(100, 149, 237, 0.15);
+    border: none;
+    padding: 10px;
+    margin-bottom: 25px;
+    outline: none;
+    color: cornflowerblue;
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  input::-webkit-input-placeholder {
+    color: cornflowerblue;
+    opacity: .3;
+  }
+  
+  input:-ms-input-placeholder {
+    color: cornflowerblue;
+    opacity: .3;
+  }
+  
+  input::-ms-input-placeholder {
+    color: cornflowerblue;
+    opacity: .3;
+  }
+  
+  input::placeholder {
+    color: cornflowerblue;
+    opacity: .3;
+  }
+  
+  button {
+    margin-top: 20px;
+    width: 100%;
+    display: block;
+    background-color: cornflowerblue;
+    border: none;
+    padding: 20px;
+    text-transform: uppercase;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: .9;
+  }
+  
+  button:hover {
+    opacity: 1;
+  }
+  /*# sourceMappingURL=style.css.map */

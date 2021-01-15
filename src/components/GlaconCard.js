@@ -5,7 +5,7 @@ import { colors } from "../theme";
 
 const useStyles = makeStyles((theme) => ({
 	oneCard: {
-		backgroundColor: "#ECE9E9",
+		backgroundColor: "#fff",
 		margin: "1vw",
 		width: 300,
 		height: 160,
