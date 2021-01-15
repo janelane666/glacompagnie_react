@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import HomePage from "./screens/HomePage";
 import Header from "./components/Header";
 import { Grid } from "@material-ui/core";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 class App extends Component {
 	state = {
@@ -21,15 +21,10 @@ class App extends Component {
 
 	render() {
 		return (
-			<BrowserRouter>
-				<Grid>
-					<Header />
-						<Routes>
-							<Route path="/" element={<GlaconCard />} />
-						<HomePage glacons={this.state.glacons} />
-						</Routes>
-				</Grid>
-			</BrowserRouter>
+			<Grid>
+				<Header />
+				<HomePage glacons={this.state.glacons} />
+			</Grid>
 		);
 	}
 }

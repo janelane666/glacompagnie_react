@@ -2,7 +2,9 @@ import React from "react";
 import { Button, AppBar, Toolbar, Typography } from "@material-ui/core";
 import { colors } from "../theme";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
+// import paths from "../paths";
+// import { useHistory } from "react-router-dom";
+import createBrowserHistory from "history/createBrowserHistory";
 
 const useStyles = makeStyles((theme) => ({
 	monCompte: {
@@ -31,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
 	const styles = useStyles();
+	// const history = useHistory();
+	const history = createBrowserHistory();
 
 	return (
 		<AppBar position="static" className={styles.appbar}>
@@ -39,8 +43,10 @@ const Header = () => {
 				<Typography className={styles.logo} variant="h6">
 					🐧 Glaçompagnie™ 🧊
 				</Typography>
-				<Link to="/" className={styles.monCompte}>MON COMPTE</Link>
-				<Button className={styles.headerLink}>CONTACT</Button>
+				<Button className={styles.headerLink} onClick={() => history.go(0)}>
+					CONTACT
+				</Button>
+
 				<Button className={styles.headerLink}>À PROPOS</Button>
 				{/* <Image /> */}
 			</Toolbar>
