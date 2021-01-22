@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import { Grid } from "@material-ui/core";
 import Form from "./components/Form"
 import CodePostal from "./components/CodePostal";
+import FicheProduit from "./components/FicheProduit";
 
 class App extends Component {
 	state = {
@@ -25,8 +26,8 @@ class App extends Component {
 			<Grid>
 				<Header />
 				<HomePage glacons={this.state.glacons} />
-				<CodePostal />
-				<Form />
+				<FicheProduit />
+				{/* <Form /> */}
 			</Grid>
 		);
 	}
