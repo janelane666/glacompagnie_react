@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import HomePage from "./screens/HomePage";
 import Header from "./components/Header";
 import { Grid } from "@material-ui/core";
+import Navigation from "./components/Header";
+import Routes from "./Routes";
 
 class App extends Component {
 	state = {
@@ -21,8 +23,10 @@ class App extends Component {
 	render() {
 		return (
 			<Grid>
-				<Header />
-				<HomePage glacons={this.state.glacons} />
+				<Navigation />
+				<Routes />
+				{/* <Header /> */}
+				{/* <HomePage glacons={this.state.glacons} /> */}
 			</Grid>
 		);
 	}

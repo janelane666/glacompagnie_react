@@ -38,6 +38,8 @@ const useStyles = makeStyles((theme) => ({
 const GlaconCards = ({ glacons }) => {
 	const styles = useStyles();
 
+	console.log(glacons);
+
 	return (
 		<Grid container className={styles.cardContainer}>
 			{glacons.map((glacon) => (
