@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import GlaconCards from '../../components/GlaconCard';
-const rp = require('request-promise');
-// const axios = require('axios');
+import React, { useState, useEffect } from "react";
+import GlaconCards from "../../components/GlaconCard";
+const rp = require("request-promise");
 // import { makeStyles } from "@material-ui/core/styles";
 // import { colors } from "../../theme";
 
@@ -14,29 +13,20 @@ const rp = require('request-promise');
 // }));
 
 const HomePage = () => {
-	// const state = {
-	// 	glacons: [],
-	// };
-
 	const [glacons, setGlacons] = useState([]);
 
 	useEffect(() => {
-		// rp({
-		// 	method: 'GET',
-		// 	uri: 'https://glacompagnie-api.herokuapp.com/api/v1/glacons',
-		// 	json: true,
-		// }).then((res) => {
-		// 	console.log('in request', res);
-		// 	setGlacons(res.data);
-		// });
-
-		axios.get('https://glacompagnie-api.herokuapp.com/api/v1/glacons').then((res) => {
-			console.log('in request', res);
-			setGlacons(res.data);
+		rp({
+			method: "GET",
+			uri: "https://glacompagnie-api.herokuapp.com/api/v1/glacons",
+			json: true,
+		}).then((res) => {
+			console.log("in request", res);
+			setGlacons(res);
 		});
 	}, [glacons]);
 
-	console.log('glacons', glacons);
+	console.log("glacons", glacons);
 
 	return (
 		<div>
