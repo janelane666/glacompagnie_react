@@ -38,11 +38,11 @@ const useStyles = makeStyles((theme) => ({
 const GlaconCards = ({ glacons }) => {
 	const styles = useStyles();
 
-	console.log(glacons);
+	console.log("glaglacon", glacons);
 
 	return (
 		<Grid container className={styles.cardContainer}>
-			{glacons.map((glacon) => (
+			{glacons["glacons"].map((glacon) => (
 				<Grid item>
 					<Card className={styles.oneCard}>
 						<div class="card-body">

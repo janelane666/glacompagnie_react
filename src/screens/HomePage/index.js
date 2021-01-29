@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GlaconCards from "../../components/GlaconCard";
 // import { makeStyles } from "@material-ui/core/styles";
 // import { colors } from "../../theme";
@@ -11,22 +11,47 @@ import GlaconCards from "../../components/GlaconCard";
 // 	},
 // }));
 
-const HomePage = async () => {
-	// state = {
+const HomePage = () => {
+	// const state = {
 	// 	glacons: [],
-	// 	truc: "coucou",
 	// };
 
 	const [glacons, setGlacons] = useState([]);
 
-	await setGlacons(
-		await fetch("https://glacompagnie-api.herokuapp.com/api/v1/glacons")
-			.then((res) => console.log("allo", res.json()))
-			.then((data) => {
-				this.setState({ glacons: data });
+	// useEffect(() => {
+	// 	fetch("https://glacompagnie-api.herokuapp.com/api/v1/glacons")
+	// 		.then((res) => {
+	// 			console.log("res", res);
+	// 			return res.json().then((glacons) => setGlacons(glacons));
+	// 		})
+	// 		// .then((data) => {
+	// 		// 	console.log("data", data);
+	// 		// 	setGlacons({ glacons: data });
+	// 		// })
+	// 		.catch(console.log("ALLO"));
+	// }, [glacons]);
+
+	const requete = async () => {
+		const ret = await fetch(
+			"https://glacompagnie-api.herokuapp.com/api/v1/glacons"
+		)
+			.then((res) => {
+				console.log("res", res);
+				return res.json().then((glacons) => setGlacons(glacons));
 			})
-			.catch(console.log("ALLO"))
-	);
+			// .then((data) => {
+			// 	console.log("data", data);
+			// 	setGlacons({ glacons: data });
+			// })
+			.catch(console.log("ALLO"));
+
+		const glacon = await ret.json();
+		setGlacons(glacon);
+	};
+
+	// res.json().then(glacon => setState(glacon)))
+
+	console.log("glacons", glacons);
 
 	return (
 		<div>
