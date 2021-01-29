@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
-import GlaconCards from "../../components/GlaconCard";
+import React, { useState, useEffect } from 'react';
+import GlaconCards from '../../components/GlaconCard';
+const rp = require('request-promise');
+// const axios = require('axios');
 // import { makeStyles } from "@material-ui/core/styles";
 // import { colors } from "../../theme";
 
@@ -18,40 +20,23 @@ const HomePage = () => {
 
 	const [glacons, setGlacons] = useState([]);
 
-	// useEffect(() => {
-	// 	fetch("https://glacompagnie-api.herokuapp.com/api/v1/glacons")
-	// 		.then((res) => {
-	// 			console.log("res", res);
-	// 			return res.json().then((glacons) => setGlacons(glacons));
-	// 		})
-	// 		// .then((data) => {
-	// 		// 	console.log("data", data);
-	// 		// 	setGlacons({ glacons: data });
-	// 		// })
-	// 		.catch(console.log("ALLO"));
-	// }, [glacons]);
+	useEffect(() => {
+		// rp({
+		// 	method: 'GET',
+		// 	uri: 'https://glacompagnie-api.herokuapp.com/api/v1/glacons',
+		// 	json: true,
+		// }).then((res) => {
+		// 	console.log('in request', res);
+		// 	setGlacons(res.data);
+		// });
 
-	const requete = async () => {
-		const ret = await fetch(
-			"https://glacompagnie-api.herokuapp.com/api/v1/glacons"
-		)
-			.then((res) => {
-				console.log("res", res);
-				return res.json().then((glacons) => setGlacons(glacons));
-			})
-			// .then((data) => {
-			// 	console.log("data", data);
-			// 	setGlacons({ glacons: data });
-			// })
-			.catch(console.log("ALLO"));
+		axios.get('https://glacompagnie-api.herokuapp.com/api/v1/glacons').then((res) => {
+			console.log('in request', res);
+			setGlacons(res.data);
+		});
+	}, [glacons]);
 
-		const glacon = await ret.json();
-		setGlacons(glacon);
-	};
-
-	// res.json().then(glacon => setState(glacon)))
-
-	console.log("glacons", glacons);
+	console.log('glacons', glacons);
 
 	return (
 		<div>
