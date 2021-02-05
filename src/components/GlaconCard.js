@@ -38,15 +38,12 @@ const useStyles = makeStyles((theme) => ({
 const GlaconCards = ({ glacons }) => {
 	const styles = useStyles();
 
-	console.log('glaglacon', glacons);
-	var glacon = glacons.map((glacon) => console.log(glacon));
-
 	return (
 		<Grid container className={styles.cardContainer}>
 			{glacons.map((glacon) => (
 				<Grid item>
 					<Card className={styles.oneCard}>
-						<ButtonBase href="/Products" onClick={() => { localStorage.setItem("glacon", JSON.stringify(glacon)); console.log(glacon)}}>
+						<ButtonBase href="/Products" onClick={() => { localStorage.setItem("glacon", JSON.stringify(glacon));}}>
 						<div class='card-body'>
 							<CardContent>
 								<Typography className={styles.title}>{glacon.name}</Typography>
