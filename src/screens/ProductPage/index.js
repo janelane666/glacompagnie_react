@@ -1,7 +1,9 @@
 import React from "react";
-import "./styles/FicheProduit.css"
+import "./ProductPage.css"
 
-const FicheProduit = () => {
+const ProductPage = () => {
+	const glacon = JSON.parse(localStorage.getItem("glacon"))
+	console.log("lol", glacon)
     // let apiURL="https://glacompagnie-api.herokuapp.com/api/v1/glacons"
     // let data;
     // fetch(apiURL)
@@ -18,13 +20,13 @@ const FicheProduit = () => {
         <div className="wrapper">
             <div><img src={imgURL} /></div>
             <div>
-                <h1>{titre}</h1>
-                <p>{description}</p>
-                <h2>Prix : {prix}</h2>
+                <h1>{glacon.name}</h1>
+                <p>{glacon.description}</p>
+                <h2>Prix : {glacon.price}</h2>
                 <button>acheter</button>
             </div>
         </div>
 	);
 };
 
-export default FicheProduit;
+export default ProductPage;

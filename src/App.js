@@ -5,7 +5,8 @@ import Header from "./components/Header";
 import { Grid } from "@material-ui/core";
 import Form from "./components/Form"
 import CodePostal from "./components/CodePostal";
-import FicheProduit from "./components/FicheProduit";
+import Navigation from "./components/Header";
+import Routes from "./Routes";
 
 class App extends Component {
 	state = {
@@ -24,10 +25,8 @@ class App extends Component {
 	render() {
 		return (
 			<Grid>
-				<Header />
-				<HomePage glacons={this.state.glacons} />
-				<FicheProduit />
-				{/* <Form /> */}
+				<Navigation />
+				<Routes />
 			</Grid>
 		);
 	}
