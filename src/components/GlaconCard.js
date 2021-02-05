@@ -42,21 +42,21 @@ const GlaconCards = ({ glacons }) => {
 		<Grid container className={styles.cardContainer}>
 			{glacons.map((glacon) => (
 				<Grid item>
-					<Card className={styles.oneCard}>
-						<ButtonBase href="/Products" onClick={() => { localStorage.setItem("glacon", JSON.stringify(glacon));}}>
-						<div class='card-body'>
-							<CardContent>
-								<Typography className={styles.title}>{glacon.name}</Typography>
-								<Typography className={styles.description}>{glacon.description}</Typography>
-							</CardContent>
+					<ButtonBase href="/Products" onClick={() => { localStorage.setItem("glacon", JSON.stringify(glacon));}}>
+						<Card className={styles.oneCard}>
+							<div class='card-body'>
+								<CardContent>
+									<Typography className={styles.title}>{glacon.name}</Typography>
+									<Typography className={styles.description}>{glacon.description}</Typography>
+								</CardContent>
 
-							<CardContent className={styles.priceAndQuantity}>
-								<Typography className={styles.quantity}>Quantité : {glacon.quantity}</Typography>
-								<Typography className={styles.price}>{glacon.price} €</Typography>
-							</CardContent>
-						</div>
-						</ButtonBase>
-					</Card>
+								<CardContent className={styles.priceAndQuantity}>
+									<Typography className={styles.quantity}>Quantité : {glacon.quantity}</Typography>
+									<Typography className={styles.price}>{glacon.price} €</Typography>
+								</CardContent>
+							</div>
+						</Card>
+					</ButtonBase>
 				</Grid>
 			))}
 		</Grid>
