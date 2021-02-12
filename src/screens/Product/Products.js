@@ -1,43 +1,39 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Button, Typography, Grid } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import GlaconCards from "../../components/GlaconCard";
+const rp = require("request-promise");
+// import { makeStyles } from "@material-ui/core/styles";
+// import { colors } from "../../theme";
 
-const useStyles = makeStyles(() => ({
-	monCompte: {
-		marginLeft: "auto",
-		color: "white",
-		fontWeight: "bold",
-		textShadow: "2px 2px 8px rgba(50,100,220, 0.8)",
-	},
-	appbar: {
-		minHeight: 100,
-		display: "flex",
-		justifyContent: "center",
-	},
-	headerLink: {
-		color: "white",
-		fontWeight: "bold",
-		textShadow: "2px 2px 8px rgba(50,100,220, 0.8)",
-	},
-	logo: {
-		color: "white",
-		fontWeight: "bold",
-		textShadow: "2px 2px 8px rgba(50,100,220, 0.8)",
-	},
-}));
+// const useStyles = makeStyles((theme) => ({
+// 	title: {
+// 		fontWeight: "bold",
+// 		margin: "4vh 9vw",
+// 		color: colors.black,
+// 	},
+// }));
 
-const ProductPage = () => {
-	const styles = useStyles();
+const Products = () => {
+	const [glacons, setGlacons] = useState([]);
+
+	useEffect(() => {
+		rp({
+			method: "GET",
+			uri: "https://glacompagnie-api.herokuapp.com/api/v1/glacons",
+			json: true,
+		}).then((res) => {
+			console.log("in request", res);
+			setGlacons(res);
+		});
+	}, [glacons]);
+
+	console.log("glacons", glacons);
 
 	return (
-		<Grid>
-			<Typography>TITRE DU PRODUIT</Typography>
-			<Typography>Description</Typography>
-			<Typography>Prix</Typography>
-			<Button>Add to cart</Button>
-			<Typography>Nb glaçons restants</Typography>
-		</Grid>
+		<div>
+			<h1>Articles disponibles</h1>
+			<GlaconCards glacons={glacons} />
+		</div>
 	);
 };
 
-export default ProductPage;
+export default Products;
