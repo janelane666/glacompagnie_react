@@ -42,7 +42,7 @@ const GlaconCards = ({ glacons }) => {
 		<Grid container className={styles.cardContainer}>
 			{glacons.map((glacon) => (
 				<Grid item>
-					<ButtonBase href="/Products" onClick={() => { localStorage.setItem("glacon", JSON.stringify(glacon));}}>
+					<ButtonBase href={`/Products/${glacon.slug}/${glacon.uuid}`} onClick={() => { localStorage.setItem("glacon", JSON.stringify(glacon));}}>
 						<Card className={styles.oneCard}>
 							<div class='card-body'>
 								<CardContent>
