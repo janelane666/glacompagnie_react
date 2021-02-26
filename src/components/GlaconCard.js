@@ -1,42 +1,43 @@
-import React from 'react';
-import { Card, CardContent, Typography, Grid, ButtonBase } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { colors } from '../theme';
+import React from "react";
+import { Card, CardContent, Typography, Grid, ButtonBase } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { colors } from "../theme";
 
 const useStyles = makeStyles((theme) => ({
     oneCard: {
-        backgroundColor: '#ECE9E9',
-        margin: '1vw',
+        backgroundColor: "#ECE9E9",
+        margin: "1vw",
         width: 300,
-        height: 160,
+        height: 160
     },
     cardContainer: {
-        padding: '2vh 8vw',
+        padding: "2vh 8vw"
     },
     title: {
-        fontWeight: 'bold',
+        fontWeight: "bold",
         fontSize: 20,
-        color: colors.black,
+        color: colors.black
     },
     description: {
-        fontStyle: 'italic',
-        color: colors.grey,
+        fontStyle: "italic",
+        color: colors.grey
     },
     priceAndQuantity: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingTop: '0px',
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        paddingTop: "0px"
     },
     price: {
-        fontWeight: 'bold',
-        color: colors.black,
+        fontWeight: "bold",
+        color: colors.black
     },
-    quantity: { color: colors.grey },
+    quantity: { color: colors.grey }
 }));
 
 const GlaconCards = ({ glacons }) => {
     const styles = useStyles();
+    localStorage.setItem("glacons", JSON.stringify(glacons));
 
     return (
         <Grid container className={styles.cardContainer}>
@@ -45,7 +46,7 @@ const GlaconCards = ({ glacons }) => {
                     <ButtonBase
                         href={`/Product/${glacon.slug}/${glacon.uuid}`}
                         onClick={() => {
-                            localStorage.setItem('glacon', JSON.stringify(glacon));
+                            localStorage.setItem("glacon", JSON.stringify(glacon));
                         }}
                     >
                         <Card className={styles.oneCard}>

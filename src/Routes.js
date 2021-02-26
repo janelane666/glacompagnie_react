@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
-import { Router, Switch, Route } from 'react-router-dom';
+import React, { Component } from "react";
+import { Router, Switch, Route } from "react-router-dom";
 
-import history from './history';
-import Products from './screens/Product/Products';
+import history from "./history";
+import Products from "./screens/Product/Products";
 // import Home from "./screens/HomePage/index";
-import Product from './screens/ProductPage/index';
-import About from './screens/About/About';
-import Contact from './screens/Contact/Contact';
+import Product from "./screens/ProductPage/index";
+import About from "./screens/About/About";
+import Contact from "./screens/Contact/Contact";
+import Cart from "./components/Cart";
 
 export default class Routes extends Component {
     render() {
@@ -19,6 +20,7 @@ export default class Routes extends Component {
                     <Route path='/About' component={About} />
                     <Route path='/Product' component={Product} />
                 </Switch>
+                <Route path='/Cart' component={Cart} />
             </Router>
         );
     }

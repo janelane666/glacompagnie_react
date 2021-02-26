@@ -13,27 +13,25 @@ const rp = require("request-promise");
 // }));
 
 const Products = () => {
-	const [glacons, setGlacons] = useState([]);
+    const [glacons, setGlacons] = useState([]);
 
-	useEffect(() => {
-		rp({
-			method: "GET",
-			uri: "https://glacompagnie-api.herokuapp.com/api/v1/glacons",
-			json: true,
-		}).then((res) => {
-			console.log("in request", res);
-			setGlacons(res);
-		});
-	}, [glacons]);
+    useEffect(() => {
+        rp({
+            method: "GET",
+            uri: "https://glacompagnie-api.herokuapp.com/api/v1/glacons",
+            json: true
+        }).then((res) => {
+            console.log("in request", res);
+            setGlacons(res);
+        });
+    }, [glacons]);
 
-	console.log("glacons", glacons);
-
-	return (
-		<div>
-			<h1>Articles disponibles</h1>
-			<GlaconCards glacons={glacons} />
-		</div>
-	);
+    return (
+        <div>
+            <h1>Articles disponibles</h1>
+            <GlaconCards glacons={glacons} />
+        </div>
+    );
 };
 
 export default Products;

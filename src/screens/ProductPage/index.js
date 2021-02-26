@@ -1,11 +1,43 @@
-import React from 'react';
-import './ProductPage.css';
+import React from "react";
+import { useState } from "react";
+import "./ProductPage.css";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+
+// import { Menu } from "@material-ui/core";
 
 const ProductPage = () => {
-    const glacon = JSON.parse(localStorage.getItem('glacon'));
-
-    let defaultImg = 'https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg';
+    const glacon = JSON.parse(localStorage.getItem("glacon"));
+    const [quantity, setQuantity] = useState(1);
+    let defaultImg = "https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg";
     const img = glacon.header ? `data:image/png;base64,${glacon.header}` : defaultImg;
+
+    const addToCart = (id, quantity) => {
+        if (!localStorage.getItem("cart")) {
+            localStorage.setItem("cart", "[]");
+        }
+
+        const cart = JSON.parse(localStorage.getItem("cart"));
+
+        let newCart = cart;
+        let overWrite = false;
+
+        for (let i = 0; i < cart.length; i++) {
+            if (cart[i].id === id) {
+                overWrite = true;
+                newCart[i] = { id: id, quantity: quantity };
+            }
+        }
+
+        if (!overWrite) {
+            newCart.push({ id: id, quantity: quantity });
+        }
+
+        localStorage.setItem("cart", JSON.stringify(newCart, null, 2));
+        // console.log(JSON.parse(localStorage.getItem("cart")));
+    };
 
     return (
         <div className='wrapper'>
@@ -16,7 +48,14 @@ const ProductPage = () => {
                 <h1>{glacon.name}</h1>
                 <p>{glacon.description}</p>
                 <h2>Prix : {glacon.price}</h2>
-                <button>acheter</button>
+                <button onClick={() => addToCart(glacon.id, quantity)}>acheter</button>
+                <FormControl>
+                    <Select value={quantity} onChange={(event) => setQuantity(event.target.value)}>
+                        {[...Array(10).keys()].map((i) => (
+                            <MenuItem value={i + 1}>{i + 1}</MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
             </div>
         </div>
     );
