@@ -2,7 +2,10 @@ import { createMuiTheme } from "@material-ui/core/styles";
 
 export const colors = {
 	black: "#333",
-	grey: "#5A5959",
+	grey: "EDE7E3",
+	darkBlue: "16697A",
+	lightBlue: "489FB5",
+	orange: "FFA62B",
 	backgroundHeader: "#BAF0F8",
 };
 
