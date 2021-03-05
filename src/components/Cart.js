@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, Typography, Grid, ButtonBase } from "@material-ui/core";
+import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "../theme";
 import CartDropdown from "./CartDropdown.js"
@@ -62,6 +62,7 @@ export const addToCart = (id, quantity) => {
 };
 
 const Cart = () => {
+    const [quantity, setQuantity] = React.useState(1);
     const styles = useStyles();
     const cartItems = JSON.parse(localStorage.getItem("cart"));
     const glacons = JSON.parse(localStorage.getItem("glacons"));
@@ -74,7 +75,7 @@ const Cart = () => {
         }
     });
 
-    console.log("data", cartItemsData);
+    console.log("data", cartItems);
 
     return (
         <Grid container className={styles.cardContainer}>
@@ -85,8 +86,8 @@ const Cart = () => {
                 }}
             > */}
             {cartItemsData?.map((item) => (
-                <Card className={styles.oneCard}>
-                    <div class='card-body'>
+                <Card className={styles.oneCard} key={item.id}>
+                    <div className='card-body'>
                         <>
                             <CardContent>
                                 <Typography className={styles.title}>{item.name}</Typography>
@@ -105,7 +106,7 @@ const Cart = () => {
                                     }
                                 </Typography>
                                 {/* <Typography className={styles.price}>{glacon.price} €</Typography> */}
-                                <CartDropdown />
+                                <CartDropdown quantity={quantity} setQuantity={setQuantity} />
                             </CardContent>
                         </>
                     </div>
