@@ -36,31 +36,6 @@ const useStyles = makeStyles((theme) => ({
     quantity: { color: colors.grey }
 }));
 
-export const addToCart = (id, quantity) => {
-    if (!localStorage.getItem("cart")) {
-        localStorage.setItem("cart", "[]");
-    }
-
-    const cart = JSON.parse(localStorage.getItem("cart"));
-
-    let newCart = cart;
-    let overWrite = false;
-
-    for (let i = 0; i < cart.length; i++) {
-        if (cart[i].id === id) {
-            overWrite = true;
-            newCart[i] = { id: id, quantity: quantity };
-        }
-    }
-
-    if (!overWrite) {
-        newCart.push({ id: id, quantity: quantity });
-    }
-
-    localStorage.setItem("cart", JSON.stringify(newCart, null, 2));
-    // console.log(JSON.parse(localStorage.getItem("cart")));
-};
-
 const Cart = () => {
     const styles = useStyles();
     const cartItems = JSON.parse(localStorage.getItem("cart"));
@@ -69,21 +44,12 @@ const Cart = () => {
 
     const cartItemsData = glacons?.filter((item) => {
         if (cartItemsId?.includes(item.id)) {
-            console.log("true");
             return item;
         }
     });
 
-    console.log("data", cartItems);
-
     return (
         <Grid container className={styles.cardContainer}>
-            {/* <ButtonBase
-                href={`/Product/${glacon.slug}/${glacon.uuid}`}
-                onClick={() => {
-                    localStorage.setItem("glacon", JSON.stringify(glacon));
-                }}
-            > */}
             {cartItemsData?.map((item) => (
                 <Card className={styles.oneCard} key={item.id}>
                     <div className='card-body'>
@@ -94,16 +60,7 @@ const Cart = () => {
                             </CardContent>
 
                             <CardContent className={styles.priceAndQuantity}>
-                                <Typography className={styles.quantity}>
-                                    {"Quantity selected: "}
-                                    {
-                                        cartItems.filter((cartItem) => {
-                                            if (cartItem.id === item.id) {
-                                                return cartItem;
-                                            }
-                                        })[0].quantity
-                                    }
-                                </Typography>
+                                <Typography className={styles.quantity}>{"Quantity selected: "}</Typography>
                                 {/* <Typography className={styles.price}>{item.price} €</Typography> */}
                                 <CartDropdown item={item} />
                             </CardContent>
