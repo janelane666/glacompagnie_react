@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardContent, Typography, Grid, ButtonBase } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "../theme";
-import CartDropdown from "./CartDropdown.js"
+import CartDropdown from "./CartDropdown.js";
 
 const useStyles = makeStyles((theme) => ({
     oneCard: {
@@ -104,8 +104,8 @@ const Cart = () => {
                                         })[0].quantity
                                     }
                                 </Typography>
-                                {/* <Typography className={styles.price}>{glacon.price} €</Typography> */}
-                                <CartDropdown />
+                                {/* <Typography className={styles.price}>{item.price} €</Typography> */}
+                                <CartDropdown item={item} />
                             </CardContent>
                         </>
                     </div>
