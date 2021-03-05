@@ -1,16 +1,6 @@
 import React, { useState, useEffect } from "react";
 import GlaconCards from "../../components/GlaconCard";
 const rp = require("request-promise");
-// import { makeStyles } from "@material-ui/core/styles";
-// import { colors } from "../../theme";
-
-// const useStyles = makeStyles((theme) => ({
-// 	title: {
-// 		fontWeight: "bold",
-// 		margin: "4vh 9vw",
-// 		color: colors.black,
-// 	},
-// }));
 
 const Products = () => {
     const [glacons, setGlacons] = useState([]);
@@ -27,8 +17,8 @@ const Products = () => {
     }, [glacons]);
 
     return (
-        <div>
-            <h1>Articles disponibles</h1>
+        <div style={{ display: 'flex', justifyContent: 'center', padding: 30 }}>
+            <h2>Articles disponibles</h2>
             <GlaconCards glacons={glacons} />
         </div>
     );
