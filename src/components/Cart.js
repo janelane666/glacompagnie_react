@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardContent, Typography, Grid, ButtonBase } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "../theme";
+import CartDropdown from "./CartDropdown.js"
 
 const useStyles = makeStyles((theme) => ({
     oneCard: {
@@ -67,7 +68,7 @@ const Cart = () => {
     const cartItemsId = cartItems?.map((item) => item.id);
 
     const cartItemsData = glacons?.filter((item) => {
-        if (cartItemsId.includes(item.id)) {
+        if (cartItemsId?.includes(item.id)) {
             console.log("true");
             return item;
         }
@@ -104,6 +105,7 @@ const Cart = () => {
                                     }
                                 </Typography>
                                 {/* <Typography className={styles.price}>{glacon.price} €</Typography> */}
+                                <CartDropdown />
                             </CardContent>
                         </>
                     </div>
