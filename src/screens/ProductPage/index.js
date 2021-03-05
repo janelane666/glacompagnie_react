@@ -23,13 +23,9 @@ const ProductPage = () => {
                 <p>{glacon.description}</p>
                 <h2>Prix : {glacon.price}</h2>
                 <button onClick={() => addToCart(glacon.id, quantityCart)}>acheter</button>
-                <FormControl>
-                    <Select value={quantityCart} onChange={(event) => setQuantityCart(event.target.value)}>
-                        {[...Array(10).keys()].map((i) => (
-                            <MenuItem value={i + 1}>{i + 1}</MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
+
+                {/* quantityCart doesnt get updated fix later */}
+                <CartDropdown item={glacon} fromProductPage={true} />
             </div>
         </div>
     );

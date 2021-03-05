@@ -51,7 +51,7 @@ const CartDropdown = ({ item, fromProductPage }) => {
                     }
                 }}
             >
-                {[...Array(100).keys()].map((i) => (
+                {[...Array(50).keys()].map((i) => (
                     <MenuItem value={i + 1} key={i}>
                         {i + 1}
                     </MenuItem>
