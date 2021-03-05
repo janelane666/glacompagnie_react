@@ -39,9 +39,9 @@ const Cart = () => {
     const styles = useStyles();
     const cartItems = JSON.parse(localStorage.getItem("cart"));
     const glacons = JSON.parse(localStorage.getItem("glacons"));
-    const cartItemsId = cartItems.map((item) => item.id);
+    const cartItemsId = cartItems?.map((item) => item.id);
 
-    const cartItemsData = glacons.filter((item) => {
+    const cartItemsData = glacons?.filter((item) => {
         if (cartItemsId.includes(item.id)) {
             console.log("true");
             return item;
@@ -58,7 +58,7 @@ const Cart = () => {
                     localStorage.setItem("glacon", JSON.stringify(glacon));
                 }}
             > */}
-            {cartItemsData.map((item) => (
+            {cartItemsData?.map((item) => (
                 <Card className={styles.oneCard}>
                     <div class='card-body'>
                         <>

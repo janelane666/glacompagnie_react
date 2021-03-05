@@ -3,10 +3,7 @@ import { useState } from "react";
 import "./ProductPage.css";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
-
-// import { Menu } from "@material-ui/core";
 
 const ProductPage = () => {
     const glacon = JSON.parse(localStorage.getItem("glacon"));
@@ -42,7 +39,7 @@ const ProductPage = () => {
     return (
         <div className='wrapper'>
             <div>
-                <img src={img} />
+                <img src={img} alt='glacon' />
             </div>
             <div>
                 <h1>{glacon.name}</h1>
