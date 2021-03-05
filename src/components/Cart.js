@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, Typography, Grid, ButtonBase } from "@material-ui/core";
+import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "../theme";
 import CartDropdown from "./CartDropdown.js";
@@ -74,7 +74,7 @@ const Cart = () => {
         }
     });
 
-    console.log("data", cartItemsData);
+    console.log("data", cartItems);
 
     return (
         <Grid container className={styles.cardContainer}>
@@ -85,8 +85,8 @@ const Cart = () => {
                 }}
             > */}
             {cartItemsData?.map((item) => (
-                <Card className={styles.oneCard}>
-                    <div class='card-body'>
+                <Card className={styles.oneCard} key={item.id}>
+                    <div className='card-body'>
                         <>
                             <CardContent>
                                 <Typography className={styles.title}>{item.name}</Typography>

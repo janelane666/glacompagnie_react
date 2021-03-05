@@ -42,7 +42,7 @@ const GlaconCards = ({ glacons }) => {
     return (
         <Grid container className={styles.cardContainer}>
             {glacons.map((glacon) => (
-                <Grid item>
+                <Grid item key={glacon.id}>
                     <ButtonBase
                         href={`/Product/${glacon.slug}/${glacon.uuid}`}
                         onClick={() => {
@@ -50,7 +50,7 @@ const GlaconCards = ({ glacons }) => {
                         }}
                     >
                         <Card className={styles.oneCard}>
-                            <div class='card-body'>
+                            <div className='card-body'>
                                 <CardContent>
                                     <Typography className={styles.title}>{glacon.name}</Typography>
                                     <Typography className={styles.description}>{glacon.description}</Typography>
