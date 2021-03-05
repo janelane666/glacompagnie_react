@@ -4,37 +4,13 @@ import "./ProductPage.css";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import { addToCart } from "../../components/Cart";
 
 const ProductPage = () => {
     const glacon = JSON.parse(localStorage.getItem("glacon"));
     const [quantity, setQuantity] = useState(1);
     let defaultImg = "https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg";
     const img = glacon.header ? `data:image/png;base64,${glacon.header}` : defaultImg;
-
-    const addToCart = (id, quantity) => {
-        if (!localStorage.getItem("cart")) {
-            localStorage.setItem("cart", "[]");
-        }
-
-        const cart = JSON.parse(localStorage.getItem("cart"));
-
-        let newCart = cart;
-        let overWrite = false;
-
-        for (let i = 0; i < cart.length; i++) {
-            if (cart[i].id === id) {
-                overWrite = true;
-                newCart[i] = { id: id, quantity: quantity };
-            }
-        }
-
-        if (!overWrite) {
-            newCart.push({ id: id, quantity: quantity });
-        }
-
-        localStorage.setItem("cart", JSON.stringify(newCart, null, 2));
-        // console.log(JSON.parse(localStorage.getItem("cart")));
-    };
 
     return (
         <div className='wrapper'>

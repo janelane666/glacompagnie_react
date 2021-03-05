@@ -35,6 +35,31 @@ const useStyles = makeStyles((theme) => ({
     quantity: { color: colors.grey }
 }));
 
+export const addToCart = (id, quantity) => {
+    if (!localStorage.getItem("cart")) {
+        localStorage.setItem("cart", "[]");
+    }
+
+    const cart = JSON.parse(localStorage.getItem("cart"));
+
+    let newCart = cart;
+    let overWrite = false;
+
+    for (let i = 0; i < cart.length; i++) {
+        if (cart[i].id === id) {
+            overWrite = true;
+            newCart[i] = { id: id, quantity: quantity };
+        }
+    }
+
+    if (!overWrite) {
+        newCart.push({ id: id, quantity: quantity });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(newCart, null, 2));
+    // console.log(JSON.parse(localStorage.getItem("cart")));
+};
+
 const Cart = () => {
     const styles = useStyles();
     const cartItems = JSON.parse(localStorage.getItem("cart"));
