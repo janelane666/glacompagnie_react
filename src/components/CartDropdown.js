@@ -49,7 +49,7 @@ const CartDropdown = ({ glacon, fromProductPage, quantityCart, setQuantityCart }
                     // }
                 }}
             >
-                {[...Array(item.quantity > 0 ? (item.quantity > 50 ? item.quantity : 50) : 0).keys()].map((i) => (
+                {[...Array(glacon.quantity > 0 ? (glacon.quantity > 50 ? glacon.quantity : 50) : 0).keys()].map((i) => (
                     <MenuItem value={i + 1} key={i}>
                         {i + 1}
                     </MenuItem>
