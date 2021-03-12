@@ -10,7 +10,7 @@ const ProductPage = () => {
 
     const cart = JSON.parse(localStorage.getItem("cart"));
 
-    const filterCartRes = cart.filter((cartItem) => {
+    const filterCartRes = cart?.filter((cartItem) => {
         if (cartItem.id === glacon.id) {
             return cartItem;
         }
