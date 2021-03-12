@@ -7,8 +7,6 @@ export const addToCart = (id, quantity) => {
     if (!localStorage.getItem("cart")) {
         localStorage.setItem("cart", "[]");
     }
-    console.log("id", id);
-    console.log("quantity", quantity);
 
     const cart = JSON.parse(localStorage.getItem("cart"));
 
@@ -26,14 +24,11 @@ export const addToCart = (id, quantity) => {
         newCart.push({ id: id, quantityCart: quantity });
     }
 
-    console.log("cart", cart);
-    console.log("newCart", newCart);
     localStorage.setItem("cart", JSON.stringify(newCart, null, 2));
 };
 
 const CartDropdown = ({ glacon, fromProductPage, quantityCart, setQuantityCart }) => {
     const [qty, setQty] = React.useState(quantityCart);
-
     React.useEffect(() => {
         if (qty !== quantityCart) setQuantityCart(qty);
     }, [qty, quantityCart, setQuantityCart]);
@@ -44,9 +39,9 @@ const CartDropdown = ({ glacon, fromProductPage, quantityCart, setQuantityCart }
                 value={qty}
                 onChange={(event) => {
                     setQty(event.target.value);
-                    // if (!fromProductPage) {
-                    //     addToCart(glacon.id, event.target.value);
-                    // }
+                    if (!fromProductPage) {
+                        addToCart(glacon.id, event.target.value);
+                    }
                 }}
             >
                 {[...Array(glacon.quantity > 0 ? (glacon.quantity < 50 ? glacon.quantity : 50) : 0).keys()].map((i) => (

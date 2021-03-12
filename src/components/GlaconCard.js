@@ -47,38 +47,34 @@ const GlaconCards = ({ glacons }) => {
 
     return (
         <Grid container className={styles.cardContainer}>
-            {glacons.map(
-                (glacon) => (
-                    console.log("glacon", glacon),
-                    (
-                        <Grid item key={glacon.id}>
-                            <ButtonBase
-                                href={`/Product/${glacon.slug}/${glacon.uuid}`}
-                                onClick={() => {
-                                    localStorage.setItem("glacon", JSON.stringify(glacon));
-                                }}
-                            >
-                                <Card className={styles.oneCard}>
-                                    <div className='card-body'>
-                                        <CardContent className={styles.container}>
-                                            <img width='50' height='50' src={glacon.header ? `data:image/png;base64,${glacon.header}` : defaultImg} alt='glacon' />
-                                            <Grid className={styles.informationsContainer}>
-                                                <Typography className={styles.title}>{glacon.name}</Typography>
-                                                <Typography className={styles.description}>{glacon.description}</Typography>
-                                            </Grid>
-                                        </CardContent>
+            {glacons.map((glacon) => (
+                // console.log("glacon", glacon),
+                <Grid item key={glacon.id}>
+                    <ButtonBase
+                        href={`/Product/${glacon.slug}/${glacon.uuid}`}
+                        onClick={() => {
+                            localStorage.setItem("glacon", JSON.stringify(glacon));
+                        }}
+                    >
+                        <Card className={styles.oneCard}>
+                            <div className='card-body'>
+                                <CardContent className={styles.container}>
+                                    <img width='50' height='50' src={glacon.header ? `data:image/png;base64,${glacon.header}` : defaultImg} alt='glacon' />
+                                    <Grid className={styles.informationsContainer}>
+                                        <Typography className={styles.title}>{glacon.name}</Typography>
+                                        <Typography className={styles.description}>{glacon.description}</Typography>
+                                    </Grid>
+                                </CardContent>
 
-                                        <CardContent className={styles.priceAndQuantity}>
-                                            <Typography className={styles.quantity}>Quantité : {glacon.quantity}</Typography>
-                                            <Typography className={styles.price}>{glacon.price} €</Typography>
-                                        </CardContent>
-                                    </div>
-                                </Card>
-                            </ButtonBase>
-                        </Grid>
-                    )
-                )
-            )}
+                                <CardContent className={styles.priceAndQuantity}>
+                                    <Typography className={styles.quantity}>Quantité : {glacon.quantity}</Typography>
+                                    <Typography className={styles.price}>{glacon.price} €</Typography>
+                                </CardContent>
+                            </div>
+                        </Card>
+                    </ButtonBase>
+                </Grid>
+            ))}
         </Grid>
     );
 };

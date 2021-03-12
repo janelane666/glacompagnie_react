@@ -10,21 +10,10 @@ const ProductPage = () => {
 
     const cart = JSON.parse(localStorage.getItem("cart"));
 
-    const filterCartRes = cart?.filter((cartItem) => {
-        if (cartItem.id === glacon.id) {
-            return cartItem;
-        }
-        return [];
-    });
+    const filterCartRes = cart?.filter((cartItem) => cartItem.id === glacon.id);
 
-    const [quantityCart, setQuantityCart] = React.useState();
+    const [quantityCart, setQuantityCart] = React.useState(filterCartRes && filterCartRes.length ? filterCartRes[0].quantityCart : 1);
 
-    React.useEffect(() => {
-        setQuantityCart(filterCartRes.length ? filterCartRes[0].quantityCart : 1);
-    }, [filterCartRes]);
-    React.useEffect(() => {
-        console.log("filterCartRes", filterCartRes);
-    }, [filterCartRes]);
     return (
         <div className='wrapper'>
             <div>
