@@ -61,7 +61,7 @@ const GlaconCards = ({ glacons }) => {
                                 <Card className={styles.oneCard}>
                                     <div className='card-body'>
                                         <CardContent className={styles.container}>
-                                            <img width='50' src={glacon.header ? `data:image/png;base64,${glacon.header}` : defaultImg} alt='glacon' />
+                                            <img width='50' height='50' src={glacon.header ? `data:image/png;base64,${glacon.header}` : defaultImg} alt='glacon' />
                                             <Grid className={styles.informationsContainer}>
                                                 <Typography className={styles.title}>{glacon.name}</Typography>
                                                 <Typography className={styles.description}>{glacon.description}</Typography>
