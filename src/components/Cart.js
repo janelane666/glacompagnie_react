@@ -41,6 +41,7 @@ const Cart = () => {
     const cartItems = JSON.parse(localStorage.getItem("cart"));
     const glacons = JSON.parse(localStorage.getItem("glacons"));
     const cartItemsId = cartItems?.map((item) => item.id);
+    const cartItemsQuantity = cartItems?.map((item) => item.quantityCart);
 
     const cartItemsData = glacons?.filter((item) => {
         if (cartItemsId?.includes(item.id)) {
@@ -48,26 +49,31 @@ const Cart = () => {
         }
     });
 
+    // console.log("allo", cartItemsQuantity);
+
     return (
         <Grid container className={styles.cardContainer}>
-            {cartItemsData?.map((item) => (
-                <Card className={styles.oneCard} key={item.id}>
-                    <div className='card-body'>
-                        <>
-                            <CardContent>
-                                <Typography className={styles.title}>{item.name}</Typography>
-                                <Typography className={styles.description}>{item.description}</Typography>
-                            </CardContent>
+            {cartItemsData?.map((item, idx) => {
+                const qty = cartItemsQuantity[idx];
+                // console.log("test", qty);
+                return (
+                    <Card className={styles.oneCard} key={item.id}>
+                        <div className='card-body'>
+                            <>
+                                <CardContent>
+                                    <Typography className={styles.title}>{item.name}</Typography>
+                                </CardContent>
 
-                            <CardContent className={styles.priceAndQuantity}>
-                                <Typography className={styles.quantity}>{"Quantity selected: "}</Typography>
-                                {/* <Typography className={styles.price}>{item.price} €</Typography> */}
-                                <CartDropdown item={item} />
-                            </CardContent>
-                        </>
-                    </div>
-                </Card>
-            ))}
+                                <CardContent className={styles.priceAndQuantity}>
+                                    <Typography className={styles.quantity}>{"Quantity selected: "}</Typography>
+                                    <Typography className={styles.price}>{item.price} €</Typography>
+                                    <CartDropdown item={item} quantityCart={qty} />
+                                </CardContent>
+                            </>
+                        </div>
+                    </Card>
+                );
+            })}
         </Grid>
     );
 };

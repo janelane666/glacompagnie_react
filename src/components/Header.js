@@ -4,7 +4,6 @@ import { withRouter } from "react-router-dom";
 import "./Header.css";
 
 const Navigation = (props) => {
-    console.log(props);
     return (
         <Navbar className='color-nav'>
             <Navbar.Brand className='navLinks' href='/Home'>

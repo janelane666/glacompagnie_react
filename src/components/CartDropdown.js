@@ -7,6 +7,8 @@ export const addToCart = (id, quantity) => {
     if (!localStorage.getItem("cart")) {
         localStorage.setItem("cart", "[]");
     }
+    console.log("id", id);
+    console.log("quantity", quantity);
 
     const cart = JSON.parse(localStorage.getItem("cart"));
 
@@ -24,31 +26,27 @@ export const addToCart = (id, quantity) => {
         newCart.push({ id: id, quantityCart: quantity });
     }
 
+    console.log("cart", cart);
+    console.log("newCart", newCart);
     localStorage.setItem("cart", JSON.stringify(newCart, null, 2));
 };
 
-const CartDropdown = ({ item, fromProductPage }) => {
-    const cart = JSON.parse(localStorage.getItem("cart"));
+const CartDropdown = ({ glacon, fromProductPage, quantityCart, setQuantityCart }) => {
+    const [qty, setQty] = React.useState(quantityCart);
 
-    const filterCartRes = cart.filter((cartItem) => {
-        if (cartItem.id === item.id) {
-            return cartItem;
-        }
-    });
-
-    const quantity = filterCartRes.length ? filterCartRes[0].quantityCart : 1;
-
-    const [quantityCart, setQuantityCart] = React.useState(quantity);
+    React.useEffect(() => {
+        if (qty !== quantityCart) setQuantityCart(qty);
+    }, [qty, quantityCart, setQuantityCart]);
 
     return (
         <FormControl>
             <Select
-                value={quantityCart}
+                value={qty}
                 onChange={(event) => {
-                    setQuantityCart(event.target.value);
-                    if (!fromProductPage) {
-                        addToCart(item.id, event.target.value);
-                    }
+                    setQty(event.target.value);
+                    // if (!fromProductPage) {
+                    //     addToCart(glacon.id, event.target.value);
+                    // }
                 }}
             >
                 {[...Array(50).keys()].map((i) => (

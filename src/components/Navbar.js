@@ -4,7 +4,6 @@ import { Navbar, Nav } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 
 const Navigation = (props) => {
-    console.log(props);
     return (
         <Navbar bg='primary' variant='dark'>
             <Navbar.Brand href='/Home'>🐧 Glaçompagnie™ 🧊</Navbar.Brand>

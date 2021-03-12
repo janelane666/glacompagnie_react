@@ -11,22 +11,27 @@ const useStyles = makeStyles((theme) => ({
         height: 160
     },
     cardContainer: {
-        padding: "2vh 8vw"
+        // padding: "2vh 8vw"
     },
+    container: { display: "flex", flexDirection: "row" },
+
+    informationsContainer: { display: "flex", flexDirection: "row", alignItems: "center" },
     title: {
         fontWeight: "bold",
         fontSize: 20,
-        color: colors.black
+        color: colors.black,
+        marginLeft: 20
     },
     description: {
         fontStyle: "italic",
-        color: colors.grey
+        color: colors.grey,
+        marginLeft: 20
     },
     priceAndQuantity: {
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
-        paddingTop: "0px"
+        paddingTop: "0x"
     },
     price: {
         fontWeight: "bold",
@@ -37,34 +42,43 @@ const useStyles = makeStyles((theme) => ({
 
 const GlaconCards = ({ glacons }) => {
     const styles = useStyles();
+    let defaultImg = "https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg";
     localStorage.setItem("glacons", JSON.stringify(glacons));
 
     return (
         <Grid container className={styles.cardContainer}>
-            {glacons.map((glacon) => (
-                <Grid item key={glacon.id}>
-                    <ButtonBase
-                        href={`/Product/${glacon.slug}/${glacon.uuid}`}
-                        onClick={() => {
-                            localStorage.setItem("glacon", JSON.stringify(glacon));
-                        }}
-                    >
-                        <Card className={styles.oneCard}>
-                            <div className='card-body'>
-                                <CardContent>
-                                    <Typography className={styles.title}>{glacon.name}</Typography>
-                                    <Typography className={styles.description}>{glacon.description}</Typography>
-                                </CardContent>
+            {glacons.map(
+                (glacon) => (
+                    console.log("glacon", glacon),
+                    (
+                        <Grid item key={glacon.id}>
+                            <ButtonBase
+                                href={`/Product/${glacon.slug}/${glacon.uuid}`}
+                                onClick={() => {
+                                    localStorage.setItem("glacon", JSON.stringify(glacon));
+                                }}
+                            >
+                                <Card className={styles.oneCard}>
+                                    <div className='card-body'>
+                                        <CardContent className={styles.container}>
+                                            <img width='50' src={glacon.header ? `data:image/png;base64,${glacon.header}` : defaultImg} alt='glacon' />
+                                            <Grid className={styles.informationsContainer}>
+                                                <Typography className={styles.title}>{glacon.name}</Typography>
+                                                <Typography className={styles.description}>{glacon.description}</Typography>
+                                            </Grid>
+                                        </CardContent>
 
-                                <CardContent className={styles.priceAndQuantity}>
-                                    <Typography className={styles.quantity}>Quantité : {glacon.quantity}</Typography>
-                                    <Typography className={styles.price}>{glacon.price} €</Typography>
-                                </CardContent>
-                            </div>
-                        </Card>
-                    </ButtonBase>
-                </Grid>
-            ))}
+                                        <CardContent className={styles.priceAndQuantity}>
+                                            <Typography className={styles.quantity}>Quantité : {glacon.quantity}</Typography>
+                                            <Typography className={styles.price}>{glacon.price} €</Typography>
+                                        </CardContent>
+                                    </div>
+                                </Card>
+                            </ButtonBase>
+                        </Grid>
+                    )
+                )
+            )}
         </Grid>
     );
 };
