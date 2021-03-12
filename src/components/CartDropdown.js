@@ -51,7 +51,7 @@ const CartDropdown = ({ item, fromProductPage }) => {
                     }
                 }}
             >
-                {[...Array(50).keys()].map((i) => (
+                {[...Array(item.quantity > 0 ? (item.quantity > 50 ? item.quantity : 50) : 0).keys()].map((i) => (
                     <MenuItem value={i + 1} key={i}>
                         {i + 1}
                     </MenuItem>
