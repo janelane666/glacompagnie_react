@@ -5,16 +5,13 @@ const rp = require("request-promise");
 const Products = () => {
     const [glacons, setGlacons] = useState([]);
 
-    useEffect(() => {
-        rp({
-            method: "GET",
-            uri: "https://glacompagnie-api.herokuapp.com/api/v1/glacons",
-            json: true
-        }).then((res) => {
-            // console.log("in request", res);
-            setGlacons(res);
-        });
-    }, [glacons]);
+    rp({
+        method: "GET",
+        uri: "https://glacompagnie-api.herokuapp.com/api/v1/glacons",
+        json: true
+    }).then((res) => {
+        setGlacons(res);
+    });
 
     return (
         <div style={{ display: "flex", justifyContent: "center", padding: 30 }}>

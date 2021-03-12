@@ -51,8 +51,6 @@ const Cart = () => {
 
     const [quantityCart, setQuantityCart] = React.useState();
 
-    // console.log("allo", cartItemsQuantity);
-
     return (
         <Grid container className={styles.cardContainer}>
             {cartItemsData?.map((item, idx) => {
@@ -66,7 +64,7 @@ const Cart = () => {
 
                                 <CardContent className={styles.priceAndQuantity}>
                                     <Typography className={styles.quantity}>{"Quantity selected: "}</Typography>
-                                    {/* <Typography className={styles.price}>{item.price} €</Typography> */}
+                                    <Typography className={styles.price}>{item.price * cartItemsQuantity[idx]}€</Typography>
                                     <CartDropdown glacon={item} fromProductPage={false} quantityCart={cartItemsQuantity[idx]} setQuantityCart={setQuantityCart} />
                                 </CardContent>
                             </>

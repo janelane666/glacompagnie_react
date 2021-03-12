@@ -6,6 +6,7 @@ import CartDropdown from "../../components/CartDropdown";
 const ProductPage = () => {
     const glacon = JSON.parse(localStorage.getItem("glacon"));
     let defaultImg = "https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg";
+
     const img = glacon.header ? `data:image/png;base64,${glacon.header}` : defaultImg;
 
     const cart = JSON.parse(localStorage.getItem("cart"));
