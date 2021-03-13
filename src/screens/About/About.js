@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React from "react";
+import { Grid, Typography } from "@material-ui/core";
 
-class About extends Component {
-    render() {
-        return (
-            <div style={{ display: 'flex', justifyContent: 'center', padding: 30 }}>
-                <div><h2>About Page</h2></div>
-            </div>
-        );
-    }
-}
+const About = () => {
+    return (
+        <Grid style={{ display: "flex", justifyContent: "center", padding: 30, fontWeight: "bold" }}>
+            <Grid>
+                <Typography>About Page</Typography>
+            </Grid>
+        </Grid>
+    );
+};
 
 export default About;

@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
+import React from "react";
+import { Grid, Typography } from "@material-ui/core";
 
-class Contact extends Component {
-    render() {
-        return (
-            <div style={{ display: 'flex', justifyContent: 'center', padding: 30 }}>
-                <div>
-                    <h2>Contact Page</h2>
-                </div>
-            </div>
-        );
-    }
-}
+const Contact = () => {
+    return (
+        <Grid style={{ display: "flex", justifyContent: "center", padding: 30 }}>
+            <Grid>
+                <Typography>Contact Page</Typography>
+            </Grid>
+        </Grid>
+    );
+};
 
 export default Contact;

@@ -1,15 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
+import { Grid, Typography } from "@material-ui/core";
 
-class Home extends Component {
-    render() {
-        return (
-            <div style={{ display: "flex", justifyContent: "center", padding: 30 }}>
-                <div>
-                    <h2>Home Page</h2>
-                </div>
-            </div>
-        );
-    }
-}
+const Home = () => {
+    return (
+        <Grid style={{ display: "flex", justifyContent: "center", padding: 30 }}>
+            <Grid>
+                <Typography>Home Page</Typography>
+            </Grid>
+        </Grid>
+    );
+};
 
 export default Home;
