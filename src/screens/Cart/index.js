@@ -42,6 +42,19 @@ const Cart = () => {
     const styles = useStyles();
     const cart = JSON.parse(localStorage.getItem("cart"));
     const [quantityCart, setQuantityCart] = React.useState();
+    const [totalPrice, setTotalPrice] = React.useState();
+
+    React.useEffect(() => {
+        const priceArray = cart.map((item) => item.price * item.cartQuantity);
+        let addedPrice = 0;
+
+        for (const price of priceArray){
+            addedPrice += price;
+        }
+        setTotalPrice(addedPrice);
+        console.log(priceArray);
+
+    }, [setTotalPrice]);
 
     return (
         <Grid container className={styles.cardContainer}>
@@ -66,6 +79,9 @@ const Cart = () => {
                         </Card>
                     );
                 })}
+                <Typography>
+                    {totalPrice}
+                </Typography>
             </Grid>
         </Grid>
     );
