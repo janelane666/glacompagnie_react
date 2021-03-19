@@ -1,15 +1,17 @@
 import React from "react";
-import { Card, CardContent, Typography, Grid } from "@material-ui/core";
+import { CardContent, Typography, Grid, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "../../theme";
 import CartDropdown from "../../components/CartDropdown.js";
 
 const useStyles = makeStyles((theme) => ({
-    oneCard: {
-        backgroundColor: "#ECE9E9",
+    oneCard: {        
+        display: "flex",
+        flexDirection: "row",
+        // backgroundColor: "#ECE9E9",
         margin: "1vw",
-        width: 300,
-        height: 160
+        // width: 300,
+        // height: 160
     },
     cardContainer: {
         padding: "2vh 8vw",
@@ -43,6 +45,7 @@ const Cart = () => {
     const cart = JSON.parse(localStorage.getItem("cart"));
     const [quantityCart, setQuantityCart] = React.useState();
     const [totalPrice, setTotalPrice] = React.useState();
+    let defaultImg = "https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg";
 
     React.useEffect(() => {
         const priceArray = cart.map((item) => item.price * item.cartQuantity);
@@ -58,30 +61,32 @@ const Cart = () => {
 
     return (
         <Grid container className={styles.cardContainer}>
-            <Typography style={{ alignSelf: "center", paddingBottom: 20 }}>Panier</Typography>
+            <Typography style={{ paddingBottom: 20, fontWeight: "bold", fontSize: 40}}>Panier</Typography>
             <Grid className={styles.card}>
                 {cart?.map((item, i) => {
                     return (
-                        <Card className={styles.oneCard} key={item.id}>
-                            <Grid className='card-body'>
-                                <>
-                                    <CardContent>
-                                        <Typography className={styles.title}>{item.name}</Typography>
-                                    </CardContent>
-
-                                    <CardContent className={styles.priceAndQuantity}>
-                                        <Typography className={styles.cartQuantity}>{"Quantity selected: "}</Typography>
-                                        <Typography className={styles.price}>{Number(item.price * item.cartQuantity).toFixed(2)}€</Typography>
-                                        <CartDropdown glacon={item} fromProductPage={false} quantityCart={item.cartQuantity} setQuantityCart={setQuantityCart} />
-                                    </CardContent>
-                                </>
+                        <Grid className={styles.oneCard} key={item.id}>
+                            <>                                        
+                            <img width='50' height='50' src={item.header ? `data:image/png;base64,${item.header}` : defaultImg} alt='glacon' />
+                            <Grid flexDirection="column" style={{marginLeft: 20, marginRight: 20, width: 400}}>
+                                <Typography className={styles.title}>{item.name}</Typography>
+                                <Grid style={{display: "flex", flexDirection:"row"}}>
+                                    <Typography className={styles.title}>Prix unitaire : {Number(item.price).toFixed(2)}€</Typography>
+                                    <Button >Supprimer</Button>  
+                                </Grid>     
                             </Grid>
-                        </Card>
+                            <Grid flexDirection="column" style={{marginLeft: 20, marginRight: 20}}>
+                                <Typography className={styles.cartQuantity}>{"Quantity selected: "}</Typography>                                        
+                                <CartDropdown glacon={item} fromProductPage={false} quantityCart={item.cartQuantity} setQuantityCart={setQuantityCart} />
+                            </Grid>
+
+                            <Typography className={styles.price}>Prix total :{Number(item.price * item.cartQuantity).toFixed(2)}€</Typography>
+
+                                </>
+                        </Grid>
                     );
                 })}
-                <Typography>
-                    {Number(totalPrice).toFixed(2)}
-                </Typography>
+                <Typography style={{display: "flex", justifyContent: "flex-end"}}>Prix du panier: {Number(totalPrice).toFixed(2)}€</Typography>
             </Grid>
         </Grid>
     );
