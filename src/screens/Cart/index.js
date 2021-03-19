@@ -44,7 +44,9 @@ const Cart = () => {
     const glacons = JSON.parse(localStorage.getItem("glacons"));
     const cartItemsId = cartItems?.map((item) => item.id);
     const cartItemsQuantity = cartItems?.map((item) => item.quantityCart);
-
+    
+    
+    
     const cartItemsData = glacons?.filter((item) => {
         if (cartItemsId?.includes(item.id)) {
             return item;
