@@ -54,7 +54,7 @@ const Cart = () => {
         setTotalPrice(addedPrice);
         console.log(priceArray);
 
-    }, [setTotalPrice]);
+    }, [quantityCart]);
 
     return (
         <Grid container className={styles.cardContainer}>
