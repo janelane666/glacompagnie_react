@@ -40,26 +40,14 @@ const useStyles = makeStyles((theme) => ({
 
 const Cart = () => {
     const styles = useStyles();
-    const cartItems = JSON.parse(localStorage.getItem("cart"));
-    const glacons = JSON.parse(localStorage.getItem("glacons"));
-    const cartItemsId = cartItems?.map((item) => item.id);
-    const cartItemsQuantity = cartItems?.map((item) => item.quantityCart);
-    
-    
-    
-    const cartItemsData = glacons?.filter((item) => {
-        if (cartItemsId?.includes(item.id)) {
-            return item;
-        }
-    });
-
+    const cart = JSON.parse(localStorage.getItem("cart"));
     const [quantityCart, setQuantityCart] = React.useState();
 
     return (
         <Grid container className={styles.cardContainer}>
             <Typography style={{ alignSelf: "center", paddingBottom: 20 }}>Panier</Typography>
             <Grid className={styles.card}>
-                {cartItemsData?.map((item, idx) => {
+                {cart?.map((item, i) => {
                     return (
                         <Card className={styles.oneCard} key={item.id}>
                             <Grid className='card-body'>
@@ -69,9 +57,9 @@ const Cart = () => {
                                     </CardContent>
 
                                     <CardContent className={styles.priceAndQuantity}>
-                                        <Typography className={styles.quantity}>{"Quantity selected: "}</Typography>
-                                        <Typography className={styles.price}>{item.price * cartItemsQuantity[idx]}€</Typography>
-                                        <CartDropdown glacon={item} fromProductPage={false} quantityCart={cartItemsQuantity[idx]} setQuantityCart={setQuantityCart} />
+                                        <Typography className={styles.cartQuantity}>{"Quantity selected: "}</Typography>
+                                        <Typography className={styles.price}>{item.price * item.cartQuantity}€</Typography>
+                                        <CartDropdown glacon={item} fromProductPage={false} quantityCart={item.cartQuantity} setQuantityCart={setQuantityCart} />
                                     </CardContent>
                                 </>
                             </Grid>
