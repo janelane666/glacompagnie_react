@@ -71,7 +71,7 @@ const Cart = () => {
 
                                     <CardContent className={styles.priceAndQuantity}>
                                         <Typography className={styles.cartQuantity}>{"Quantity selected: "}</Typography>
-                                        <Typography className={styles.price}>{item.price * item.cartQuantity}€</Typography>
+                                        <Typography className={styles.price}>{Number(item.price * item.cartQuantity).toFixed(2)}€</Typography>
                                         <CartDropdown glacon={item} fromProductPage={false} quantityCart={item.cartQuantity} setQuantityCart={setQuantityCart} />
                                     </CardContent>
                                 </>
@@ -80,7 +80,7 @@ const Cart = () => {
                     );
                 })}
                 <Typography>
-                    {totalPrice}
+                    {Number(totalPrice).toFixed(2)}
                 </Typography>
             </Grid>
         </Grid>
