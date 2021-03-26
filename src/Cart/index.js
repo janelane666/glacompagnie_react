@@ -2,7 +2,7 @@ import React from "react";
 import { Typography, Grid, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "../theme";
-import CartDropdown, {addToCart, removeFromCart} from "../components/CartDropdown.js";
+import CartDropdown, { addToCart, removeFromCart } from "../components/CartDropdown.js";
 
 const useStyles = makeStyles((theme) => ({
     oneCard: {
@@ -42,12 +42,14 @@ const useStyles = makeStyles((theme) => ({
 
 const Cart = () => {
     const styles = useStyles();
-    const [cart, setCart] = React.useState(JSON.parse(localStorage.getItem("cart")));
+    const [cartDelete, setCart] = React.useState(JSON.parse(localStorage.getItem("cart")));
+    const cart = JSON.parse(localStorage.getItem("cart"));
     const [quantityCart, setQuantityCart] = React.useState();
     const [totalPrice, setTotalPrice] = React.useState();
     let defaultImg = "https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg";
 
     React.useEffect(() => {
+        const cart = JSON.parse(localStorage.getItem("cart"));
         const priceArray = cart ? cart.map((item) => item.price * item.cartQuantity) : [];
         let addedPrice = 0;
 
@@ -55,14 +57,13 @@ const Cart = () => {
             addedPrice += price;
         }
         setTotalPrice(addedPrice);
-        console.log(priceArray);
-    }, [quantityCart, cart]);
+    }, [quantityCart, cartDelete]);
 
-    const removeProduct = (item) => {
-        removeFromCart(item.id); 
-        setCart((oldCart) => oldCart.filter((product)=>product.id !== item.id)); 
+    const removeProduct = (item, all = false) => {
+        removeFromCart(item, all);
+        setCart(JSON.parse(localStorage.getItem("cart")));
     };
-    
+
     return (
         <Grid container className={styles.cardContainer}>
             <Typography style={{ paddingBottom: 20, fontWeight: "bold", fontSize: 40 }}>Panier</Typography>
@@ -76,14 +77,15 @@ const Cart = () => {
                                     <Typography className={styles.title}>{item.name}</Typography>
                                     <Grid style={{ display: "flex", flexDirection: "row" }}>
                                         <Typography className={styles.title}>Prix unitaire : {Number(item.price).toFixed(2)}€</Typography>
-                                        <Button type='submit' onClick={() => removeProduct(item)}>Supprimer</Button>
+                                        <Button type='submit' onClick={() => removeProduct(item.id)}>
+                                            Supprimer
+                                        </Button>
                                     </Grid>
                                 </Grid>
                                 <Grid flexDirection='column' style={{ marginLeft: 20, marginRight: 20 }}>
                                     <Typography className={styles.cartQuantity}>{"Quantity selected: "}</Typography>
                                     <CartDropdown glacon={item} fromProductPage={false} quantityCart={item.cartQuantity} setQuantityCart={setQuantityCart} />
                                 </Grid>
-
                                 <Typography className={styles.price}>Prix total :{Number(item.price * item.cartQuantity).toFixed(2)}€</Typography>
                             </>
                         </Grid>
@@ -91,6 +93,13 @@ const Cart = () => {
                 })}
                 <Typography style={{ display: "flex", justifyContent: "flex-end" }}>Prix du panier: {Number(totalPrice).toFixed(2)}€</Typography>
             </Grid>
+            {cartDelete.length ? (
+                <Button type='submit' onClick={() => removeProduct(null, true)}>
+                    Supprimer
+                </Button>
+            ) : (
+                "c'est vide :c"
+            )}
         </Grid>
     );
 };
