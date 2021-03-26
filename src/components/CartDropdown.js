@@ -61,7 +61,7 @@ export const removeFromCart = (id, all = false) => {
 };
 
 const CartDropdown = ({ glacon, fromProductPage, quantityCart, setQuantityCart }) => {
-    const [qty, setQty] = React.useState(1);
+    const [qty, setQty] = React.useState(quantityCart);
     React.useEffect(() => {
         if (qty !== quantityCart) setQuantityCart(qty);
     }, [qty, quantityCart, setQuantityCart]);

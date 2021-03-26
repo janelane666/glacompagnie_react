@@ -19,7 +19,7 @@ const ProductPage = () => {
     const styles = useStyles();
     const [glacon, setGlacon] = useState([]);
     const { uuid, slug } = useParams();
-    const [quantityCart, setQuantityCart] = useState(0);
+    const [quantityCart, setQuantityCart] = useState(1);
     const [img, setImg] = useState("https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg");
 
     React.useEffect(() => {
