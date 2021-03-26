@@ -48,7 +48,7 @@ const Cart = () => {
     let defaultImg = "https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg";
 
     React.useEffect(() => {
-        const priceArray = cart.map((item) => item.price * item.cartQuantity);
+        const priceArray = cart ? cart.map((item) => item.price * item.cartQuantity) : [];
         let addedPrice = 0;
 
         for (const price of priceArray) {
