@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Cart = () => {
     const styles = useStyles();
-    const cart = JSON.parse(localStorage.getItem("cart"));
+    const [cart, setCart] = React.useState(JSON.parse(localStorage.getItem("cart")));
     const [quantityCart, setQuantityCart] = React.useState();
     const [totalPrice, setTotalPrice] = React.useState();
     let defaultImg = "https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg";
@@ -58,6 +58,11 @@ const Cart = () => {
         console.log(priceArray);
     }, [quantityCart, cart]);
 
+    const removeProduct = (item) => {
+        removeFromCart(item.id); 
+        setCart((oldCart) => oldCart.filter((product)=>product.id !== item.id)); 
+    };
+    
     return (
         <Grid container className={styles.cardContainer}>
             <Typography style={{ paddingBottom: 20, fontWeight: "bold", fontSize: 40 }}>Panier</Typography>
@@ -71,7 +76,7 @@ const Cart = () => {
                                     <Typography className={styles.title}>{item.name}</Typography>
                                     <Grid style={{ display: "flex", flexDirection: "row" }}>
                                         <Typography className={styles.title}>Prix unitaire : {Number(item.price).toFixed(2)}€</Typography>
-                                        <Button type='submit' onClick={() => removeFromCart(item.id)}>Supprimer</Button>
+                                        <Button type='submit' onClick={() => removeProduct(item)}>Supprimer</Button>
                                     </Grid>
                                 </Grid>
                                 <Grid flexDirection='column' style={{ marginLeft: 20, marginRight: 20 }}>
