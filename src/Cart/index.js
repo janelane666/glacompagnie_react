@@ -2,7 +2,7 @@ import React from "react";
 import { Typography, Grid, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "../theme";
-import CartDropdown from "../components/CartDropdown.js";
+import CartDropdown, {addToCart, removeFromCart} from "../components/CartDropdown.js";
 
 const useStyles = makeStyles((theme) => ({
     oneCard: {
@@ -71,7 +71,7 @@ const Cart = () => {
                                     <Typography className={styles.title}>{item.name}</Typography>
                                     <Grid style={{ display: "flex", flexDirection: "row" }}>
                                         <Typography className={styles.title}>Prix unitaire : {Number(item.price).toFixed(2)}€</Typography>
-                                        <Button>Supprimer</Button>
+                                        <Button type='submit' onClick={() => removeFromCart(item.id)}>Supprimer</Button>
                                     </Grid>
                                 </Grid>
                                 <Grid flexDirection='column' style={{ marginLeft: 20, marginRight: 20 }}>

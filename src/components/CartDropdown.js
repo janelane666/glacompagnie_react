@@ -36,6 +36,22 @@ export const addToCart = (id, cartQuantity) => {
     localStorage.setItem("cart", JSON.stringify(newCart, null, 2));
 };
 
+export const removeFromCart = (id) => {
+    const cart = JSON.parse(localStorage.getItem("cart"));
+
+    if (!cart) {
+        return
+    }
+
+    const newCart = cart?.filter((item) => {
+        if (item.id !== id) {
+            return item
+        }
+    })
+
+    localStorage.setItem("cart", JSON.stringify(newCart, null, 2));
+}
+
 const CartDropdown = ({ glacon, fromProductPage, quantityCart, setQuantityCart }) => {
     const [qty, setQty] = React.useState(quantityCart);
     React.useEffect(() => {
