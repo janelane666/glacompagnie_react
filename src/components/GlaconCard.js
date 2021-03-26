@@ -43,19 +43,12 @@ const useStyles = makeStyles((theme) => ({
 const GlaconCards = ({ glacons }) => {
     const styles = useStyles();
     let defaultImg = "https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg";
-    localStorage.setItem("glacons", JSON.stringify(glacons));
 
     return (
         <Grid container className={styles.cardContainer}>
             {glacons.map((glacon) => (
-                // console.log("glacon", glacon),
                 <Grid item key={glacon.id}>
-                    <ButtonBase
-                        href={`/Product/${glacon.slug}/${glacon.uuid}`}
-                        onClick={() => {
-                            localStorage.setItem("glacon", JSON.stringify(glacon));
-                        }}
-                    >
+                    <ButtonBase href={`/Product/${glacon.slug}/${glacon.uuid}`}>
                         <Card className={styles.oneCard}>
                             <div className='card-body'>
                                 <CardContent className={styles.container}>
