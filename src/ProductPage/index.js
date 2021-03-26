@@ -5,6 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Button, Typography, Grid } from "@material-ui/core";
 import { useParams } from "react-router-dom";
 import rp from "request-promise";
+import ErrorPage from "../ErrorPage/ErrorPage";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
     container: { display: "flex", width: "70%", margin: "auto" },
@@ -17,6 +19,8 @@ const ProductPage = () => {
     const styles = useStyles();
     const [glacon, setGlacon] = useState([]);
     const { uuid, slug } = useParams();
+    const [quantityCart, setQuantityCart] = useState(0);
+    const [img, setImg] = useState("https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg");
 
     React.useEffect(() => {
         rp({
@@ -25,20 +29,21 @@ const ProductPage = () => {
             json: true
         }).then((res) => {
             setGlacon(res);
+            if (!res) {
+                return;
+            }
+
+            setImg(glacon && glacon.header ? `data:image/png;base64,${glacon.header}` : img);
+
+            const cart = JSON.parse(localStorage.getItem("cart"));
+
+            const filterCartRes = cart?.filter((cartItem) => cartItem.id === glacon.id);
+
+            setQuantityCart(filterCartRes && filterCartRes.length ? filterCartRes[0].quantityCart : 1);
         });
     }, []);
 
-    let defaultImg = "https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg";
-
-    const img = glacon.header ? `data:image/png;base64,${glacon.header}` : defaultImg;
-
-    const cart = JSON.parse(localStorage.getItem("cart"));
-
-    const filterCartRes = cart?.filter((cartItem) => cartItem.id === glacon.id);
-
-    const [quantityCart, setQuantityCart] = React.useState(filterCartRes && filterCartRes.length ? filterCartRes[0].quantityCart : 1);
-
-    return (
+    return glacon ? (
         <Grid className={styles.container}>
             <Grid>
                 <img className={styles.image} src={img} alt='glacon' />
@@ -54,6 +59,8 @@ const ProductPage = () => {
                 <CartDropdown glacon={glacon} fromProductPage={true} quantityCart={quantityCart} setQuantityCart={setQuantityCart} />
             </Grid>
         </Grid>
+    ) : (
+        <Redirect component={ErrorPage} />
     );
 };
 
