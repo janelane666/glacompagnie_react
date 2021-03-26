@@ -42,7 +42,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Cart = () => {
     const styles = useStyles();
-    const [cart, setCart] = React.useState(JSON.parse(localStorage.getItem("cart")));
+    const [cartDelete, setCart] = React.useState(JSON.parse(localStorage.getItem("cart")));
+    const cart = JSON.parse(localStorage.getItem("cart"));
     const [quantityCart, setQuantityCart] = React.useState();
     const [totalPrice, setTotalPrice] = React.useState();
     let defaultImg = "https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg";
@@ -56,7 +57,7 @@ const Cart = () => {
             addedPrice += price;
         }
         setTotalPrice(addedPrice);
-    }, [quantityCart]);
+    }, [quantityCart, cartDelete]);
 
     const removeProduct = (item, all = false) => {
         removeFromCart(item, all);
@@ -85,7 +86,6 @@ const Cart = () => {
                                     <Typography className={styles.cartQuantity}>{"Quantity selected: "}</Typography>
                                     <CartDropdown glacon={item} fromProductPage={false} quantityCart={item.cartQuantity} setQuantityCart={setQuantityCart} />
                                 </Grid>
-
                                 <Typography className={styles.price}>Prix total :{Number(item.price * item.cartQuantity).toFixed(2)}€</Typography>
                             </>
                         </Grid>
@@ -93,7 +93,7 @@ const Cart = () => {
                 })}
                 <Typography style={{ display: "flex", justifyContent: "flex-end" }}>Prix du panier: {Number(totalPrice).toFixed(2)}€</Typography>
             </Grid>
-            {cart.length ? (
+            {cartDelete.length ? (
                 <Button type='submit' onClick={() => removeProduct(null, true)}>
                     Supprimer
                 </Button>
