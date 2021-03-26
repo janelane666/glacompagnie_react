@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { addToCart } from "../components/CartDropdown";
 import CartDropdown from "../components/CartDropdown";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Typography, Grid } from "@material-ui/core";
+import { useParams } from "react-router-dom";
+import rp from "request-promise";
 
 const useStyles = makeStyles(() => ({
     container: { display: "flex", width: "70%", margin: "auto" },
@@ -13,8 +15,19 @@ const useStyles = makeStyles(() => ({
 
 const ProductPage = () => {
     const styles = useStyles();
+    const [glacon, setGlacon] = useState([]);
+    const { uuid, slug } = useParams();
 
-    const glacon = JSON.parse(localStorage.getItem("glacon"));
+    React.useEffect(() => {
+        rp({
+            method: "GET",
+            uri: `https://glacompagnie-api.herokuapp.com/api/v1/glacons?single=true&uuid=${uuid}&slug=${slug}`,
+            json: true
+        }).then((res) => {
+            setGlacon(res);
+        });
+    }, []);
+
     let defaultImg = "https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg";
 
     const img = glacon.header ? `data:image/png;base64,${glacon.header}` : defaultImg;
@@ -38,7 +51,6 @@ const ProductPage = () => {
                     acheter
                 </Button>
 
-                {/* quantityCart doesnt get updated fix later */}
                 <CartDropdown glacon={glacon} fromProductPage={true} quantityCart={quantityCart} setQuantityCart={setQuantityCart} />
             </Grid>
         </Grid>
