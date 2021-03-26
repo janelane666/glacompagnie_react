@@ -1,25 +1,27 @@
 import React, { Component } from "react";
 import { Router, Switch, Route } from "react-router-dom";
-
 import history from "./history";
-import Products from "./screens/ProductsList/ProductsList";
-import Home from "./screens/HomePage/index";
-import Product from "./screens/ProductPage/index";
-import About from "./screens/About/About";
-import Contact from "./screens/Contact/Contact";
-import Cart from "./screens/Cart/index";
+import Products from "./ErrorPage/ProductsList/ProductsList";
+import Home from "./HomePage/index";
+import Product from "./ProductPage/index";
+import About from "./About/About";
+import Contact from "./Contact/Contact";
+import Cart from "./Cart/index";
+import ErrorPage from "./ErrorPage/ErrorPage";
 
 export default class Routes extends Component {
     render() {
         return (
             <Router history={history}>
                 <Switch>
-                    <Route path='/Home' component={Home} />
+                    <Route exact path='/' component={Products} />
+                    <Route path='/Home' component={Products} />
                     <Route path='/Products' component={Products} />
                     <Route path='/Contact' component={Contact} />
                     <Route path='/About' component={About} />
                     <Route path='/Product' component={Product} />
                     <Route path='/Cart' component={Cart} />
+                    <Route component={ErrorPage} />
                 </Switch>
             </Router>
         );

@@ -3,7 +3,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
-export const addToCart = (id, quantity) => {
+export const addToCart = (id, cartQuantity) => {
+    const glacons = JSON.parse(localStorage.getItem("glacons"));
+
     if (!localStorage.getItem("cart")) {
         localStorage.setItem("cart", "[]");
     }
@@ -16,12 +18,19 @@ export const addToCart = (id, quantity) => {
     for (let i = 0; i < cart.length; i++) {
         if (cart[i].id === id) {
             overWrite = true;
-            newCart[i] = { id: id, quantityCart: quantity };
+            newCart[i] = { ...cart[i], cartQuantity };
+            break;
         }
     }
 
     if (!overWrite) {
-        newCart.push({ id: id, quantityCart: quantity });
+        const item = glacons?.filter((item) => {
+            if (id === item.id) {
+                return item;
+            }
+        });
+
+        newCart.push({ ...item[0], cartQuantity });
     }
 
     localStorage.setItem("cart", JSON.stringify(newCart, null, 2));

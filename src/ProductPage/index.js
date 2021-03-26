@@ -1,6 +1,6 @@
 import React from "react";
-import { addToCart } from "../../components/CartDropdown";
-import CartDropdown from "../../components/CartDropdown";
+import { addToCart } from "../components/CartDropdown";
+import CartDropdown from "../components/CartDropdown";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Typography, Grid } from "@material-ui/core";
 
