@@ -52,7 +52,7 @@ const ProductPage = () => {
                 <Typography className={styles.title}>{glacon.name}</Typography>
                 <Typography className={styles.description}>{glacon.description}</Typography>
                 <Typography className={styles.price}> Prix : {glacon.price}</Typography>
-                <Button type='submit' onClick={() => addToCart(glacon.id, quantityCart)}>
+                <Button type='submit' onClick={() => addToCart(glacon, quantityCart)}>
                     acheter
                 </Button>
 

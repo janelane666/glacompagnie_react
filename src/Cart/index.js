@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Grid, Button } from "@material-ui/core";
+import { Typography, Grid, Button, ButtonBase } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "../theme";
 import CartDropdown, { addToCart, removeFromCart } from "../components/CartDropdown.js";
@@ -54,7 +54,7 @@ const Cart = () => {
 
     React.useEffect(() => {
         const cart = JSON.parse(localStorage.getItem("cart"));
-        const priceArray = cart ? cart.map((item) => item.price * item.cartQuantity) : [];
+        const priceArray = cart ? cart.map((item) => item.price * item.quantityCart) : [];
         let addedPrice = 0;
 
         for (const price of priceArray) {
@@ -78,7 +78,9 @@ const Cart = () => {
                             <>
                                 <img width='50' height='50' src={item.header ? `data:image/png;base64,${item.header}` : defaultImg} alt='glacon' />
                                 <Grid flexDirection='column' style={{ marginLeft: 20, marginRight: 20, width: 400 }}>
-                                    <Typography className={styles.title}>{item.name}</Typography>
+                                    <ButtonBase href={`/Product/${item.slug}/${item.uuid}`}>
+                                        <Typography className={styles.title}>{item.name}</Typography>
+                                    </ButtonBase>
                                     <Grid style={{ display: "flex", flexDirection: "row" }}>
                                         <Typography className={styles.title}>Prix unitaire : {Number(item.price).toFixed(2)}€</Typography>
                                         <Button type='submit' onClick={() => removeProduct(item.id)}>
@@ -87,10 +89,10 @@ const Cart = () => {
                                     </Grid>
                                 </Grid>
                                 <Grid flexDirection='column' style={{ marginLeft: 20, marginRight: 20 }}>
-                                    <Typography className={styles.cartQuantity}>{"Quantity selected: "}</Typography>
-                                    <CartDropdown glacon={item} fromProductPage={false} quantityCart={item.cartQuantity} setQuantityCart={setQuantityCart} />
+                                    <Typography className={styles.quantityCart}>{"Quantity selected: "}</Typography>
+                                    <CartDropdown glacon={item} fromProductPage={false} quantityCart={item.quantityCart} setQuantityCart={setQuantityCart} />
                                 </Grid>
-                                <Typography className={styles.price}>Prix total :{Number(item.price * item.cartQuantity).toFixed(2)}€</Typography>
+                                <Typography className={styles.price}>Prix total :{Number(item.price * item.quantityCart).toFixed(2)}€</Typography>
                             </>
                         </Grid>
                     );

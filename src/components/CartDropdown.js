@@ -3,9 +3,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
-export const addToCart = (id, cartQuantity) => {
-    const glacons = JSON.parse(localStorage.getItem("glacons"));
-
+export const addToCart = (glacon, quantityCart) => {
     if (!localStorage.getItem("cart")) {
         localStorage.setItem("cart", "[]");
     }
@@ -16,22 +14,16 @@ export const addToCart = (id, cartQuantity) => {
     let overWrite = false;
 
     for (let i = 0; i < cart.length; i++) {
-        if (cart[i].id === id) {
+        if (cart[i].id === glacon.id) {
             overWrite = true;
-            newCart[i] = { ...cart[i], cartQuantity };
+            newCart[i] = { ...glacon, quantityCart };
             break;
         }
     }
 
     if (!overWrite) {
-        const item = glacons?.filter((item) => {
-            if (id === item.id && item.quantity > 0) {
-                return item;
-            }
-        });
-
-        if (item[0]) {
-            newCart.push({ ...item[0], cartQuantity });
+        if (glacon.quantity > 0) {
+            newCart.push({ ...glacon, quantityCart });
         }
     }
 
@@ -73,7 +65,7 @@ const CartDropdown = ({ glacon, fromProductPage, quantityCart, setQuantityCart }
                 onChange={(event) => {
                     setQty(event.target.value);
                     if (!fromProductPage) {
-                        addToCart(glacon.id, event.target.value);
+                        addToCart(glacon, event.target.value);
                     }
                 }}
             >
