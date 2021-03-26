@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import GlaconCards from "../../components/GlaconCard";
+import GlaconCards from "../components/GlaconCard";
 import { Grid, Typography } from "@material-ui/core";
 const rp = require("request-promise");
 
