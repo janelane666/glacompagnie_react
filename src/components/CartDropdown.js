@@ -25,32 +25,40 @@ export const addToCart = (id, cartQuantity) => {
 
     if (!overWrite) {
         const item = glacons?.filter((item) => {
-            if (id === item.id) {
+            if (id === item.id && item.quantity > 0) {
                 return item;
             }
         });
 
-        newCart.push({ ...item[0], cartQuantity });
+        if (item[0]) {
+            newCart.push({ ...item[0], cartQuantity });
+        }
     }
 
     localStorage.setItem("cart", JSON.stringify(newCart, null, 2));
 };
 
-export const removeFromCart = (id) => {
+export const removeFromCart = (id, all = false) => {
     const cart = JSON.parse(localStorage.getItem("cart"));
 
     if (!cart) {
-        return
+        return;
+    }
+
+    console.log(all);
+    if (all) {
+        localStorage.setItem("cart", "[]");
+        return;
     }
 
     const newCart = cart?.filter((item) => {
         if (item.id !== id) {
-            return item
+            return item;
         }
-    })
+    });
 
     localStorage.setItem("cart", JSON.stringify(newCart, null, 2));
-}
+};
 
 const CartDropdown = ({ glacon, fromProductPage, quantityCart, setQuantityCart }) => {
     const [qty, setQty] = React.useState(quantityCart);
