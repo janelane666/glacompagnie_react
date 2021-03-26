@@ -33,11 +33,11 @@ const ProductPage = () => {
                 return;
             }
 
-            setImg(glacon && glacon.header ? `data:image/png;base64,${glacon.header}` : img);
+            setImg(res && res.header ? `data:image/png;base64,${res.header}` : img);
 
             const cart = JSON.parse(localStorage.getItem("cart"));
 
-            const filterCartRes = cart?.filter((cartItem) => cartItem.id === glacon.id);
+            const filterCartRes = cart?.filter((cartItem) => cartItem.id === res.id);
 
             setQuantityCart(filterCartRes && filterCartRes.length ? filterCartRes[0].quantityCart : 1);
         });

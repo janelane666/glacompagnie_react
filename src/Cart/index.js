@@ -41,6 +41,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Cart = () => {
+    if (!localStorage.getItem("cart")) {
+        localStorage.setItem("cart", "[]");
+    }
+
     const styles = useStyles();
     const [cartDelete, setCart] = React.useState(JSON.parse(localStorage.getItem("cart")));
     const cart = JSON.parse(localStorage.getItem("cart"));
@@ -95,7 +99,7 @@ const Cart = () => {
             </Grid>
             {cartDelete.length ? (
                 <Button type='submit' onClick={() => removeProduct(null, true)}>
-                    Supprimer
+                    Tout Supprimer
                 </Button>
             ) : (
                 "c'est vide :c"
