@@ -3,8 +3,10 @@ import { Typography, Grid, Button, ButtonBase } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "../theme";
 import CartDropdown, { addToCart, removeFromCart } from "../components/CartDropdown.js";
+// import history from "../history";
+import { useHistory } from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     oneCard: {
         display: "flex",
         flexDirection: "row",
@@ -51,6 +53,7 @@ const Cart = () => {
     const [quantityCart, setQuantityCart] = React.useState();
     const [totalPrice, setTotalPrice] = React.useState();
     let defaultImg = "https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg";
+    const history = useHistory();
 
     React.useEffect(() => {
         const cart = JSON.parse(localStorage.getItem("cart"));
@@ -92,7 +95,7 @@ const Cart = () => {
                                     <Typography className={styles.quantityCart}>{"Quantity selected: "}</Typography>
                                     <CartDropdown glacon={item} fromProductPage={false} quantityCart={item.quantityCart} setQuantityCart={setQuantityCart} />
                                 </Grid>
-                                <Typography className={styles.price}>Prix total :{Number(item.price * item.quantityCart).toFixed(2)}€</Typography>
+                                <Typography className={styles.price}>Prix total : {Number(item.price * item.quantityCart).toFixed(2)}€</Typography>
                             </>
                         </Grid>
                     );
@@ -106,6 +109,9 @@ const Cart = () => {
             ) : (
                 "c'est vide :c"
             )}
+            <Button type='submit' onClick={() => history.push("/Products")}>
+                Continuer mes achats
+            </Button>
         </Grid>
     );
 };
