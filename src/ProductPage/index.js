@@ -6,7 +6,7 @@ import { Button, Typography, Grid } from "@material-ui/core";
 import { useParams } from "react-router-dom";
 import rp from "request-promise";
 import ErrorPage from "../ErrorPage/ErrorPage";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Redirect } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
     container: { display: "flex", width: "70%", margin: "auto" },
@@ -41,7 +41,7 @@ const ProductPage = () => {
 
             setQuantityCart(filterCartRes && filterCartRes.length ? filterCartRes[0].quantityCart : 1);
         });
-    }, []);
+    }, [img, slug, uuid]);
 
     return glacon ? (
         <Grid className={styles.container}>

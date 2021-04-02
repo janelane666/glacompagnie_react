@@ -2,9 +2,7 @@ import React from "react";
 import { Typography, Grid, Button, ButtonBase } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "../theme";
-import CartDropdown, { addToCart, removeFromCart } from "../components/CartDropdown.js";
-// import history from "../history";
-import { useHistory } from "react-router-dom";
+import CartDropdown, { removeFromCart } from "../components/CartDropdown.js";
 
 const useStyles = makeStyles(() => ({
     oneCard: {
@@ -53,7 +51,6 @@ const Cart = () => {
     const [quantityCart, setQuantityCart] = React.useState();
     const [totalPrice, setTotalPrice] = React.useState();
     let defaultImg = "https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg";
-    const history = useHistory();
 
     React.useEffect(() => {
         const cart = JSON.parse(localStorage.getItem("cart"));
@@ -100,10 +97,11 @@ const Cart = () => {
                         </Grid>
                     );
                 })}
+                <Typography style={{ display: "flex", justifyContent: "flex-end", marginBottom: 15 }}>Frais de livraison: 35 €</Typography>
                 <Typography style={{ display: "flex", justifyContent: "flex-end" }}>Prix du panier: {Number(totalPrice).toFixed(2)}€</Typography>
             </Grid>
             {cartDelete.length ? (
-                <Button type='submit' onClick={() => removeProduct(null, true)}>
+                <Button style={{ width: 150, display: "flex", alignSelf: "center" }} type='submit' onClick={() => removeProduct(null, true)}>
                     Tout Supprimer
                 </Button>
             ) : (
