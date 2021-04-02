@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "../theme";
 import CartDropdown, { removeFromCart } from "../components/CartDropdown.js";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     oneCard: {
         display: "flex",
         flexDirection: "row",
@@ -92,7 +92,7 @@ const Cart = () => {
                                     <Typography className={styles.quantityCart}>{"Quantity selected: "}</Typography>
                                     <CartDropdown glacon={item} fromProductPage={false} quantityCart={item.quantityCart} setQuantityCart={setQuantityCart} />
                                 </Grid>
-                                <Typography className={styles.price}>Prix total :{Number(item.price * item.quantityCart).toFixed(2)}€</Typography>
+                                <Typography className={styles.price}>Prix total : {Number(item.price * item.quantityCart).toFixed(2)}€</Typography>
                             </>
                         </Grid>
                     );
@@ -107,6 +107,9 @@ const Cart = () => {
             ) : (
                 "c'est vide :c"
             )}
+            <Button type='submit' href='/Products'>
+                Continuer mes achats
+            </Button>
         </Grid>
     );
 };
