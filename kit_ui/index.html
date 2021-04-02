@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta charset="UTF-8">
+	<title>Loan's UI Kit</title>
+
+	<!-- Stylesheet -->
+	<link rel="stylesheet" href="style.css" class="css">
+
+	<!-- Google fonts  -->
+	<link href="https://fonts.googleapis.com/css?family=Anton|Karla|Viga&display=swap" rel="stylesheet"> 
+
+	<!-- Bootswatch theme  -->
+	<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lux/bootstrap.min.css" rel="stylesheet" integrity="sha384-hVpXlpdRmJ+uXGwD5W6HZMnR9ENcKVRn855pPbuI/mwPIEKAuKgTKgGksVGmlAvt" crossorigin="anonymous">
+	
+</head>
+<br>
+<br>
+<br>
+
+<body>
+	<div class="container">
+	<ol>
+  	<li>
+    	<a href="navbar.html">Navigation Bar</a> 
+  	</li>
+  	<li>
+    	<a href="home.html">Page d'accueil</a>
+  	</li>
+  	<li>
+    	<a href="footer.html">Footer</a>
+  	</li>
+  	<li>
+    	<a href="authentification_form.html">Authentification</a>
+  	</li>
+    <li>
+      <a href="pages.html">Pages</a>
+    </li>
+	</ol>
+	<br>
+	<hr>
+	<br>
+	<h3>D'abord, parlons couleur</h3>
+	<br>
+	<div>
+		<button type="button" class="btn btn-info">Primary <br>#1F9BCF</button>
+		<button type="button" class="btn btn-secondary">Secondary <br>#fff</button>
+	</div>
+	<br>
+	<button type="button" class="btn btn-success">Success <br>#4BBF73</button>
+	<button type="button" class="btn btn-warning">Warning <br>#f0ad4e</button>
+	<button type="button" class="btn btn-danger">Danger <br>#d9534f</button>
+	<button type="button" class="btn btn-link">Link <br>#fff</button>
+	<br>
+	<br>
+	<button type="button" class="btn btn-info disabled">Primary</button>
+	<button type="button" class="btn btn-secondary disabled">Secondary</button>
+	<button type="button" class="btn btn-success disabled">Success</button>
+	<button type="button" class="btn btn-warning disabled">Warning</button>
+	<button type="button" class="btn btn-danger disabled">Danger</button>
+	<button type="button" class="btn btn-link disabled">Link</button>
+	<hr>
+
+	<br>
+	<h3>Doit-on se soumettre à la police ?</h3>
+	<br>
+    <p>Pour les titres on va utiliser la google font 'Viga'</p>
+		<h1>This is a h1 title</h1>
+		<h2>This is a h2 title</h2>
+		<h3>This is a h3 title</h3>
+		<h4>This is a h4 title</h4>
+		<h5>This is a h5 title</h5>
+		<h6>This is a h6 title</h6>
+		<br>
+		<p>
+			Pour les paragraphes, on va utiliser la google font 'Karla' :
+			<br>
+			<br>
+			Le plaisir est trop éphémère, la musique ne nous soulève un moment que pour nous laisser plus tristes, mais le sommeil est une compensation. Même lorsqu'il nous a quittés, il nous faut quelques secondes pour recommencer à souffrir ; et l'on a, chaque fois qu'on s'endort, la sensation de se livrer à un ami. Je sais bien que c'est un ami infidèle, comme tous les autres ; lorsque nous sommes trop malheureux il nous abandonne aussi. Mais nous savons qu'il reviendra tôt ou tard, peut être sous un autre nom, et que nous finirons par reposer en lui. Il est parfait quand il est sans rêves ; on pourrait dire que, chaque soir, il nous réveille de la vie.
+		</p>
+
+		<p>
+			Voici la version italique :
+			<br>
+			<blockquote>
+			"Les lois sont dangereuses quand elle retardent sur les moeurs. Elles le sont davatange lorsqu'elles se mêlent de les précéder."
+			</blockquote>
+		</p>
+		<p style="text-align-last: right;"> Marguerite Yourcenar </p>
+		<hr>
+		<br>
+	<h3>Push The Buttons</h3>
+	<br>
+	<div>
+		<button type="button" class="btn btn-info">Primary</button>
+		<button type="button" class="btn btn-secondary">Secondary</button>
+		<button type="button" class="btn btn-success">Success</button>
+		<button type="button" class="btn btn-warning">Warning</button>
+		<button type="button" class="btn btn-danger">Danger</button>
+		<button type="button" class="btn btn-link">Link</button>
+	</div>
+	<br>
+
+	<div>
+		<button type="button" class="btn btn-info disabled">Primary</button>
+		<button type="button" class="btn btn-secondary disabled">Secondary</button>
+		<button type="button" class="btn btn-success disabled">Success</button>
+		<button type="button" class="btn btn-warning disabled">Warning</button>
+		<button type="button" class="btn btn-danger disabled">Danger</button>
+		<button type="button" class="btn btn-link disabled">Link</button>
+	</div>
+	<br>
+	<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+  <button type="button" class="btn btn-info">Primary</button>
+  <div class="btn-group" role="group">
+    <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+      <a class="dropdown-item" href="#">Dropdown link</a>
+      <a class="dropdown-item" href="#">Dropdown link</a>
+    </div>
+  </div>
+</div>
+
+<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+  <button type="button" class="btn btn-success">Success</button>
+  <div class="btn-group" role="group">
+    <button id="btnGroupDrop2" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+      <a class="dropdown-item" href="#">Dropdown link</a>
+      <a class="dropdown-item" href="#">Dropdown link</a>
+    </div>
+  </div>
+</div>
+
+<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+  <button type="button" class="btn btn-danger">Danger</button>
+  <div class="btn-group" role="group">
+    <button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop4">
+      <a class="dropdown-item" href="#">Dropdown link</a>
+      <a class="dropdown-item" href="#">Dropdown link</a>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<div>
+	<button type="button" class="btn btn-outline-info">Primary</button>
+	<button type="button" class="btn btn-outline-secondary">Secondary</button>
+	<button type="button" class="btn btn-outline-success">Success</button>
+	<button type="button" class="btn btn-outline-warning">Warning</button>
+	<button type="button" class="btn btn-outline-danger">Danger</button>
+</div>
+<br>
+<div>
+	<button type="button" class="btn btn-info btn-lg">Large button</button>
+	<button type="button" class="btn btn-info">Default button</button>
+	<button type="button" class="btn btn-info btn-sm">Small button</button>
+</div>
+<br>
+	<button type="button" class="btn btn-info btn-lg btn-block">Block level button</button>
+	<br>
+	<div class="btn-group btn-group-toggle" data-toggle="buttons">
+  <label class="btn btn-info active">
+    <input type="checkbox" checked="" autocomplete="off"> Active
+  </label>
+  <label class="btn btn-info">
+    <input type="checkbox" autocomplete="off"> Check
+  </label>
+  <label class="btn btn-info">
+    <input type="checkbox" autocomplete="off"> Check
+  </label>
+	</div>
+  <br>
+  <br>
+  <div>
+    <span class="badge badge-pill badge-success">Notif</span>
+    <span class="badge badge-pill badge-danger">1</span>
+    <span class="badge badge-pill badge-warning">8</span>
+    <span class="badge badge-pill badge-info">13</span>
+  </div>
+	<br>
+	<br>
+	<hr>
+	<br>
+	<h3>Formulaires</h3>
+	<br>
+	<form>
+  <fieldset>
+    <legend>Legend</legend>
+    <div class="form-group row">
+      <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input type="text" readonly="" class="form-control-plaintext" id="staticEmail" value="email@example.com">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <div class="form-group">
+      <label for="exampleSelect1">Example select</label>
+      <select class="form-control" id="exampleSelect1">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="exampleSelect2">Example multiple select</label>
+      <select multiple="" class="form-control" id="exampleSelect2">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="exampleTextarea">Example textarea</label>
+      <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputFile">File input</label>
+      <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+      <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+    </div>
+    <fieldset class="form-group">
+      <legend>Radio buttons</legend>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+          Option one is this and that—be sure to include why it's great
+        </label>
+      </div>
+      <div class="form-check">
+      <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+          Option two can be something else and selecting it will deselect option one
+        </label>
+      </div>
+      <div class="form-check disabled">
+      <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3" disabled="">
+          Option three is disabled
+        </label>
+      </div>
+    </fieldset>
+    <fieldset class="form-group">
+      <legend>Checkboxes</legend>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="" checked="">
+          Option one is this and that—be sure to include why it's great
+        </label>
+      </div>
+      <div class="form-check disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="" disabled="">
+          Option two is disabled
+        </label>
+      </div>
+    </fieldset>
+    <button type="submit" class="btn btn-info">Submit</button>
+  </fieldset>
+</form>
+<br>
+	<hr>
+	<br>
+	<h3>Une petite partie de cartes ?</h3>
+	<br>
+<div class="row">
+	<div class="col-4">
+    <div class="card bg-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-body">
+        <h4 class="card-title">Carte 01 Titre</h4>
+        <p class="card-text">Description du glaçon, blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla</p>
+      </div>
+      <div class="card-footer">Prix</div>
+      <div class="card-footer">Quantité</div>
+      <button type="submit" class="btn btn-info">Mettre dans son panier</button>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+      <div class="card-body">
+        <h4 class="card-title">Carte 01 Titre</h4>
+        <p class="card-text">Description du glaçon, blabla blabla blabla blabla blabla blabla blabla blabla blabla blabla</p>
+      </div>
+      <div class="card-footer">Prix 99.99 euros</div>
+      <div class="card-footer">Quantité 27</div>
+      <button type="submit" class="btn btn-secondary">Mettre dans son panier</button>
+    </div>
+  </div>
+
+<div class="col-4">
+<div class="card mb-3">
+  <div class="card-body">
+    <h3 class="card-title">Titre</h3>
+  </div>
+  <img style="height: 200px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158bd1d28ef%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158bd1d28ef%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22129.359375%22%20y%3D%2297.35%22%3EImage%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image">
+  <div class="card-body">
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Prix 20.00 euros</li>
+    <li class="list-group-item">Quantité 8</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Lien 1</a>
+    <a href="#" class="card-link">Lien 2</a>
+  </div>
+  <button type="submit" class="btn btn-secondary">Mettre dans son panier</button>
+  </div>	
+  </div>
+</div>
+
+	<hr>
+	<br>
+	<h3>Icônes</h3>
+	<br>
+	<img src="arrow.png" style="height: 30px; width: 30px;">
+	<img src="text.png" style="height: 30px; width: 30px;">
+	<img src="heart.png" style="height: 30px; width: 30px;">
+	<img src="bubble.png" style="height: 30px; width: 30px;">
+	<img src="briefcase.png" style="height: 30px; width: 30px;">
+	<img src="trash.png" style="height: 30px; width: 30px;">
+	<img src="check.png" style="height: 30px; width: 30px;">
+	<img src="caution.png" style="height: 30px; width: 30px;">
+  <br>
+  <br>
+  <img src="fb.png" style="height: 30px; width: 30px;">
+  <img src="gg.png" style="height: 30px; width: 30px;">
+  <img src="twitter.png" style="height: 30px; width: 30px;">
+  <img src="yt.png" style="height: 30px; width: 30px;">
+  <img src="ig.png" style="height: 30px; width: 30px;">
+
+	
+	<br>
+	<br>
+	<hr>
+	<br>
+	<h3>Last But Not Lists !</h3>
+	<br>
+
+	<ul class="list-group">
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Cras justo odio
+    <span class="badge badge-info badge-pill">14</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Dapibus ac facilisis in
+    <span class="badge badge-info badge-pill">2</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Morbi leo risus
+    <span class="badge badge-info badge-pill">1</span>
+  </li>
+</ul>
+<br>
+<br>
+
+</div>
+</div>
+</body>
+
