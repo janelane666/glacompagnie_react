@@ -37,7 +37,7 @@ const Navigation = () => {
                     </div>
                     <div>
                         <Nav.Link href='/Cart' id='cart'>
-                            <img src={Cart} style={{ height: 30, width: 30 }} />
+                            <img src={Cart} alt={"Cart"} style={{ height: 30, width: 30 }} />
                         </Nav.Link>
                     </div>
                 </Nav>
