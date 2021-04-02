@@ -1,8 +1,8 @@
 import React from "react";
-import { Typography, Grid, Button, ButtonBase } from "@material-ui/core";
+import { Typography, Grid, Button, ButtonBase, Modal } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "../theme";
-import CartDropdown, { addToCart, removeFromCart } from "../components/CartDropdown.js";
+import CartDropdown, { removeFromCart } from "../components/CartDropdown.js";
 
 const useStyles = makeStyles((theme) => ({
     oneCard: {
@@ -37,8 +37,31 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: "bold",
         color: colors.black
     },
-    quantity: { color: colors.grey }
+    quantity: { color: colors.grey },
+    paper: {
+        position: "absolute",
+        width: 400,
+        backgroundColor: theme.palette.background.paper,
+        border: "2px solid #000",
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3)
+    }
 }));
+
+function rand() {
+    return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+    const top = 50 + rand();
+    const left = 50 + rand();
+
+    return {
+        top: `${top}%`,
+        left: `${left}%`,
+        transform: `translate(-${top}%, -${left}%)`
+    };
+}
 
 const Cart = () => {
     if (!localStorage.getItem("cart")) {
@@ -51,6 +74,12 @@ const Cart = () => {
     const [quantityCart, setQuantityCart] = React.useState();
     const [totalPrice, setTotalPrice] = React.useState();
     let defaultImg = "https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg";
+    const [openPopUp, setOpenPopUp] = React.useState(false);
+    const [modalStyle] = React.useState(getModalStyle);
+
+    const handleClose = () => {
+        setOpenPopUp(false);
+    };
 
     React.useEffect(() => {
         const cart = JSON.parse(localStorage.getItem("cart"));
@@ -67,6 +96,12 @@ const Cart = () => {
         removeFromCart(item, all);
         setCart(JSON.parse(localStorage.getItem("cart")));
     };
+
+    const modalBody = (
+        <Grid style={modalStyle} className={styles.paper}>
+            <Typography style={{ fontWeight: "bold", display: "flex", justifyContent: "center" }}>Votre panier a bien été validé</Typography>
+        </Grid>
+    );
 
     return (
         <Grid container className={styles.cardContainer}>
@@ -89,23 +124,33 @@ const Cart = () => {
                                     </Grid>
                                 </Grid>
                                 <Grid flexDirection='column' style={{ marginLeft: 20, marginRight: 20 }}>
-                                    <Typography className={styles.quantityCart}>{"Quantity selected: "}</Typography>
+                                    <Typography className={styles.quantityCart}>{"Quantité sélectionnée: "}</Typography>
                                     <CartDropdown glacon={item} fromProductPage={false} quantityCart={item.quantityCart} setQuantityCart={setQuantityCart} />
                                 </Grid>
-                                <Typography className={styles.price}>Prix total :{Number(item.price * item.quantityCart).toFixed(2)}€</Typography>
+                                <Typography className={styles.price}>Prix total : {Number(item.price * item.quantityCart).toFixed(2)}€</Typography>
                             </>
                         </Grid>
                     );
                 })}
+                <Typography style={{ display: "flex", justifyContent: "flex-end", marginBottom: 15 }}>Frais de livraison: 35 €</Typography>
                 <Typography style={{ display: "flex", justifyContent: "flex-end" }}>Prix du panier: {Number(totalPrice).toFixed(2)}€</Typography>
             </Grid>
             {cartDelete.length ? (
-                <Button type='submit' onClick={() => removeProduct(null, true)}>
+                <Button style={{ width: 150, display: "flex", alignSelf: "center" }} type='submit' onClick={() => removeProduct(null, true)}>
                     Tout Supprimer
                 </Button>
             ) : (
                 "c'est vide :c"
             )}
+            <Button type='submit' href='/Products'>
+                Continuer mes achats
+            </Button>
+            <Button style={{ width: 200, display: "flex", alignSelf: "center" }} onClick={() => setOpenPopUp(true)}>
+                Valider mon panier
+            </Button>
+            <Modal open={openPopUp} onClose={handleClose}>
+                {modalBody}
+            </Modal>
         </Grid>
     );
 };

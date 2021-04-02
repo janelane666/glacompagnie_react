@@ -23,21 +23,22 @@ const Navigation = () => {
                 <Nav className='mr-auto' style={{ justifyContent: "space-between", width: "100%" }}>
                     <div style={{ flexDirection: "row", display: "flex", marginLeft: "40%" }}>
                         <Nav.Link className={styles.button} href='/Home'>
-                            HOME
+                            ACCUEIL
                         </Nav.Link>
-                        <Nav.Link className={styles.button} href='/About'>
-                            ABOUT
+                        <Nav.Link className={styles.button} href='/About' style={{whiteSpace: "nowrap"}}>
+                            A PROPOS
                         </Nav.Link>
                         <Nav.Link className={styles.button} href='/Contact'>
                             CONTACT
                         </Nav.Link>
                         <Nav.Link className={styles.button} href='/Products'>
-                            PRODUCTS
+                            PRODUITS
                         </Nav.Link>
                     </div>
                     <div>
-                        <Nav.Link href='/Cart' id='cart'>
-                            <img src={Cart} style={{ height: 30, width: 30 }} />
+                        <Nav.Link href='/Cart' id='cart' style={{display: "flex", flexDirection: "column"}}>
+                            <img src={Cart} alt={"Cart"} style={{ height: 30, width: 30 }} />
+                            Panier
                         </Nav.Link>
                     </div>
                 </Nav>
