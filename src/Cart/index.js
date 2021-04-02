@@ -74,11 +74,11 @@ const Cart = () => {
     const [quantityCart, setQuantityCart] = React.useState();
     const [totalPrice, setTotalPrice] = React.useState();
     let defaultImg = "https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg";
-    const [open, setOpen] = React.useState(false);
+    const [openPopUp, setOpenPopUp] = React.useState(false);
     const [modalStyle] = React.useState(getModalStyle);
 
     const handleClose = () => {
-        setOpen(false);
+        setOpenPopUp(false);
     };
 
     React.useEffect(() => {
@@ -145,10 +145,10 @@ const Cart = () => {
             <Button type='submit' href='/Products'>
                 Continuer mes achats
             </Button>
-            <Button style={{ width: 200, display: "flex", alignSelf: "center" }} onClick={() => setOpen(true)}>
+            <Button style={{ width: 200, display: "flex", alignSelf: "center" }} onClick={() => setOpenPopUp(true)}>
                 Valider mon panier
             </Button>
-            <Modal open={open} onClose={handleClose}>
+            <Modal open={openPopUp} onClose={handleClose}>
                 {modalBody}
             </Modal>
         </Grid>
