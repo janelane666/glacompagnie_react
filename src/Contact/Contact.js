@@ -1,13 +1,12 @@
 import React from "react";
-import { Grid, Typography } from "@material-ui/core";
 
 const Contact = () => {
     return (
-        <Grid style={{ display: "flex", justifyContent: "center", padding: 30 }}>
-            <Grid>
-                <Typography>Contact Page</Typography>
-            </Grid>
-        </Grid>
+        <div style={{ display: "flex", justifyContent: "center", padding: 30 }}>
+            <div>
+                <h1>Contact Page</h1>
+            </div>
+        </div>
     );
 };
 

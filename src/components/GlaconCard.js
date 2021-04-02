@@ -1,74 +1,45 @@
 import React from "react";
-import { Card, CardContent, Typography, Grid, ButtonBase } from "@material-ui/core";
+import { Card, Button } from "react-bootstrap";
 import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "../theme";
+import fullGlacons from "../image/fullGlacons.jpeg";
+import { ButtonBase } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-    oneCard: {
-        backgroundColor: colors.darkBlue,
-        margin: "1vw",
-        width: 300,
-        height: 160
-    },
     cardContainer: {
-        // padding: "2vh 8vw"
-    },
-    container: { display: "flex", flexDirection: "row" },
-
-    informationsContainer: { display: "flex", flexDirection: "row", alignItems: "center" },
-    title: {
-        fontWeight: "bold",
-        fontSize: 20,
-        color: colors.black,
-        marginLeft: 20
-    },
-    description: {
-        fontStyle: "italic",
-        color: colors.grey,
-        marginLeft: 20
-    },
-    priceAndQuantity: {
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-between",
-        paddingTop: "0x"
+        flexWrap: "wrap",
+        justifyContent: "center"
     },
-    price: {
-        fontWeight: "bold",
-        color: colors.black
-    },
-    quantity: { color: colors.grey }
+    name: { fontFamily: "Viga" },
+    text: { fontFamily: "Karla" },
+    quantity: { color: colors.grey },
+    button: { width: "100%", fontFamily: "Karla" }
 }));
 
 const GlaconCards = ({ glacons }) => {
     const styles = useStyles();
-    let defaultImg = "https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg";
 
     return (
-        <Grid container className={styles.cardContainer}>
+        <div container className={styles.cardContainer}>
             {glacons.map((glacon) => (
-                <Grid item key={glacon.id}>
-                    <ButtonBase href={`/Product/${glacon.slug}/${glacon.uuid}`}>
-                        <Card className={styles.oneCard}>
-                            <div className='card-body'>
-                                <CardContent className={styles.container}>
-                                    <img width='50' height='50' src={glacon.header ? `data:image/png;base64,${glacon.header}` : defaultImg} alt='glacon' />
-                                    <Grid className={styles.informationsContainer}>
-                                        <Typography className={styles.title}>{glacon.name}</Typography>
-                                        <Typography className={styles.description}>{glacon.description}</Typography>
-                                    </Grid>
-                                </CardContent>
-
-                                <CardContent className={styles.priceAndQuantity}>
-                                    <Typography className={styles.quantity}>Quantité : {glacon.quantity}</Typography>
-                                    <Typography className={styles.price}>{glacon.price} €</Typography>
-                                </CardContent>
-                            </div>
-                        </Card>
-                    </ButtonBase>
-                </Grid>
+                <ButtonBase href={`/Product/${glacon.slug}/${glacon.uuid}`}>
+                    <Card key={glacon.id} style={{ width: "18rem", margin: 20 }}>
+                        <Card.Img src={glacon.header ? `data:image/png;base64,${glacon.header}` : fullGlacons} alt='glacon' />
+                        <Card.Body>
+                            <Card.Title className={styles.name}>{glacon.name}</Card.Title>
+                            <Card.Text className={styles.text}>{glacon.description}</Card.Text>
+                            <Card.Text className={styles.text}>Quantité : {glacon.quantity}</Card.Text>
+                            <Card.Text className={styles.text}>{glacon.price} €</Card.Text>
+                            <Button className={styles.button} variant='primary'>
+                                Ajouter au panier
+                            </Button>
+                        </Card.Body>
+                    </Card>
+                </ButtonBase>
             ))}
-        </Grid>
+        </div>
     );
 };
 

@@ -1,38 +1,74 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Viga&display=swap");
+
+/* TITLE FONT */
+@font-face {
+    font-family: "Viga-Regular";
+    src: local("Viga-Regular"), url(./fonts/Viga-Regular.ttf) format("ttf");
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* FONTS */
+
+@font-face {
+    font-family: "Karla-Bold";
+    src: local("Karla-Bold"), url(./fonts/Karla-Bold.ttf) format("ttf");
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+    font-family: "Karla-BoldItalic";
+    src: local("Karla-BoldItalic"), url(./fonts/Karla-BoldItalic.ttf) format("ttf");
 }
 
-.App-header {
-  background-color: #16697A;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@font-face {
+    font-family: "Karla-ExtraBold";
+    src: local("Karla-ExtraBold"), url(./fonts/Karla-ExtraBold.ttf) format("ttf");
 }
 
-.App-link {
-  color: #EDE7E3;
+@font-face {
+    font-family: "Karla-ExtraBoldItalic";
+    src: local("Karla-ExtraBoldItalic"), url(./fonts/Karla-ExtraBoldItalic.ttf) format("ttf");
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@font-face {
+    font-family: "Karla-ExtraLight";
+    src: local("Karla-ExtraLight"), url(./fonts/Karla-ExtraLight.ttf) format("ttf");
+}
+
+@font-face {
+    font-family: "Karla-ExtraLightItalic";
+    src: local("Karla-ExtraLightItalic"), url(./fonts/Karla-ExtraLightItalic.ttf) format("ttf");
+}
+
+@font-face {
+    font-family: "Karla-Italic";
+    src: local("Karla-Italic"), url(./fonts/Karla-Italic.ttf) format("ttf");
+}
+
+@font-face {
+    font-family: "Karla-LightItalic";
+    src: local("Karla-LightItalic"), url(./fonts/Karla-LightItalic.ttf) format("ttf");
+}
+
+@font-face {
+    font-family: "Karla-Medium";
+    src: local("Karla-Medium"), url(./fonts/Karla-Medium.ttf) format("ttf");
+}
+
+@font-face {
+    font-family: "Karla-MediumItalic";
+    src: local("Karla-MediumItalic"), url(./fonts/Karla-MediumItalic.ttf) format("ttf");
+}
+
+@font-face {
+    font-family: "Karla-Regular";
+    src: local("Karla-Regular"), url(./fonts/Karla-Regular.ttf) format("ttf");
+}
+
+@font-face {
+    font-family: "Karla-SemiBold";
+    src: local("Karla-SemiBold"), url(./fonts/Karla-SemiBold.ttf) format("ttf");
+}
+
+@font-face {
+    font-family: "Karla-SemiBoldItalic";
+    src: local("Karla-SemiBoldItalic"), url(./fonts/Karla-SemiBoldItalic.ttf) format("ttf");
 }

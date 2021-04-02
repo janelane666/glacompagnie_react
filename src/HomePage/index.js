@@ -1,13 +1,12 @@
 import React from "react";
-import { Grid, Typography } from "@material-ui/core";
 
 const Home = () => {
     return (
-        <Grid style={{ display: "flex", justifyContent: "center", padding: 30 }}>
-            <Grid>
-                <Typography>Home Page</Typography>
-            </Grid>
-        </Grid>
+        <div style={{ display: "flex", justifyContent: "center", padding: 30 }}>
+            <div>
+                <h1>Home Page</h1>
+            </div>
+        </div>
     );
 };
 
