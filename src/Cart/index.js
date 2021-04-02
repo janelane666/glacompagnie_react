@@ -124,7 +124,7 @@ const Cart = () => {
                                     </Grid>
                                 </Grid>
                                 <Grid flexDirection='column' style={{ marginLeft: 20, marginRight: 20 }}>
-                                    <Typography className={styles.quantityCart}>{"Quantity selected: "}</Typography>
+                                    <Typography className={styles.quantityCart}>{"Quantité sélectionnée: "}</Typography>
                                     <CartDropdown glacon={item} fromProductPage={false} quantityCart={item.quantityCart} setQuantityCart={setQuantityCart} />
                                 </Grid>
                                 <Typography className={styles.price}>Prix total : {Number(item.price * item.quantityCart).toFixed(2)}€</Typography>
