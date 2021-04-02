@@ -109,7 +109,7 @@ const Cart = () => {
             ) : (
                 "c'est vide :c"
             )}
-            <Button type='submit' onClick={() => history.push("/Products")}>
+            <Button type='submit' href='/Products'>
                 Continuer mes achats
             </Button>
         </Grid>
