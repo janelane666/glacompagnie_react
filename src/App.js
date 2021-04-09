@@ -1,8 +1,9 @@
-import React, { Component } from "react";
 import { Grid } from "@material-ui/core";
+import React, { Component } from "react";
+import "./App.css";
+import Footer from "./components/Footer";
 import Navigation from "./components/Header";
 import Routes from "./Routes";
-import "./App.css";
 
 class App extends Component {
     state = {
@@ -23,6 +24,7 @@ class App extends Component {
             <Grid>
                 <Navigation />
                 <Routes />
+                <Footer />
             </Grid>
         );
     }
