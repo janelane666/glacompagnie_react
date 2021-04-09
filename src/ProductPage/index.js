@@ -21,6 +21,10 @@ const useStyles = makeStyles((theme) => ({
         border: "2px solid #000",
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3)
+    },
+    modal: {
+        paddingTop: "100px",
+        marginTop: "100px"
     }
 }));
 
@@ -54,9 +58,7 @@ const ProductPage = () => {
 
     const modalBody = (
         <div style={modalStyle} className={styles.paper}>
-            <p style={{ fontWeight: "bold", display: "flex", justifyContent: "center" }}>Votre panier a été mis à jour.</p>
-            <Button href='/Products'>Continuer mes achats</Button>
-            <Button href='/Cart'>Voir mon panier</Button>
+            <p style={{ fontWeight: "bold", display: "flex", justifyContent: "center", paddingTop: "20px"}}>{glacon.name} a été bien ajouté à votre panier.</p>
         </div>
     );
 
@@ -98,9 +100,9 @@ const ProductPage = () => {
                         setOpenPopUp(true);
                     }}
                 >
-                    acheter
+                    Acheter
                 </Button>
-                <Modal open={openPopUp} onClose={handleClose}>
+                <Modal show={openPopUp} onHide={handleClose} className={styles.modal}>
                     {modalBody}
                 </Modal>
             </div>
