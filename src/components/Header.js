@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-    container: { backgroundColor: "#037bfe", width: "100%" },
+    container: { background: "linear-gradient(135deg, #e66465, #9198e5)", width: "100%" },
     buttonHomePage: { color: "#EDE7E3", fontFamily: "Karla", fontWeight: "bold" },
     leftLink: {
         flexDirection: "row",
@@ -35,10 +35,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Navigation = () => {
     const styles = useStyles();
-    const cart = React.useState(JSON.parse(localStorage.getItem("cart")));
+    const cart = JSON.parse(localStorage.getItem("cart"));
 
     return (
-        <Navbar collapseOnSelect expand='md' bg='primary' variant='light' className={styles.container}>
+        <Navbar collapseOnSelect expand='md' variant='light' className={styles.container}>
             <Navbar.Brand className={styles.buttonHomePage} href='/Home'>
                 🐧 Glaçompagnie™ 🧊
             </Navbar.Brand>
@@ -57,7 +57,7 @@ const Navigation = () => {
                         <Nav.Link href='/Cart' id='link' className={styles.cartContainer}>
                             PANIER
                             {cart.length !== 0 && (
-                                <Badge style={{ marginLeft: 5, alignSelf: "center" }} variant='danger'>
+                                <Badge style={{ marginLeft: 5, alignSelf: "center" }} variant='warning'>
                                     {cart.length}
                                 </Badge>
                             )}

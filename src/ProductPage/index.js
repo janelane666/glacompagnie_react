@@ -9,11 +9,12 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import { BrowserRouter as Redirect } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-    container: { display: "flex", width: "70%", margin: "auto", marginTop: "10%" },
-    image: { width: 350, marginRight: 50 },
-    title: { textAlign: "left", fontWeight: "bold", fontFamily: "Viga" },
+    container: { display: "flex", width: "70%", margin: "auto", marginTop: "10%", justifyContent: "center" },
+    image: { width: 400, marginRight: 50, boxShadow: "10px 5px 5px grey", borderRadius: 20 },
+    title: { textAlign: "left", fontWeight: "bold", fontFamily: "Viga", fontSize: 25 },
     button: { width: 150, textAlign: "center", marginRight: 20, fontFamily: "Karla" },
     text: { fontFamily: "Karla" },
+    price: { fontFamily: "Karla", fontSize: 30, fontWeight: "bold" },
     paper: {
         position: "absolute",
         width: 400,
@@ -25,7 +26,9 @@ const useStyles = makeStyles((theme) => ({
     modal: {
         paddingTop: "100px",
         marginTop: "100px"
-    }
+    },
+    quantityText: { marginTop: 20, fontFamily: "Karla", color: "red", fontWeight: "bold" },
+    textsContainer: { width: 400, padding: 30 }
 }));
 
 function rand() {
@@ -58,7 +61,7 @@ const ProductPage = () => {
 
     const modalBody = (
         <div style={modalStyle} className={styles.paper}>
-            <p style={{ fontWeight: "bold", display: "flex", justifyContent: "center", paddingTop: "20px"}}>{glacon.name} a été bien ajouté à votre panier.</p>
+            <p style={{ fontWeight: "bold", display: "flex", justifyContent: "center", paddingTop: "20px" }}>{glacon.name} a été bien ajouté à votre panier.</p>
         </div>
     );
 
@@ -88,13 +91,15 @@ const ProductPage = () => {
             <div>
                 <img className={styles.image} src={img} alt='glacon' />
             </div>
-            <div>
+            <div className={styles.textsContainer}>
                 <p className={styles.title}>{glacon.name}</p>
                 <p className={styles.text}>{glacon.description}</p>
-                <p className={styles.text}> Prix : {glacon.price}</p>
+                <div style={{ borderTop: "1px solid", width: 200, borderColor: "lightgrey", marginBottom: 10 }} />
+                <p className={styles.price}> Prix : {glacon.price} €</p>
                 <CartDropdown className={styles.dropdown} glacon={glacon} fromProductPage={true} quantityCart={quantityCart} setQuantityCart={setQuantityCart} />
                 <Button
                     type='submit'
+                    variant='success'
                     onClick={() => {
                         addToCart(glacon, quantityCart);
                         setOpenPopUp(true);
@@ -105,6 +110,7 @@ const ProductPage = () => {
                 <Modal show={openPopUp} onHide={handleClose} className={styles.modal}>
                     {modalBody}
                 </Modal>
+                <p className={styles.quantityText}> Il reste encore {glacon.quantity} glacons de disponible</p>
             </div>
         </div>
     ) : (

@@ -59,7 +59,7 @@ const CartDropdown = ({ glacon, fromProductPage, quantityCart, setQuantityCart }
     }, [qty, quantityCart, setQuantityCart]);
 
     return (
-        <FormControl style={{ marginRight: 20 }}>
+        <FormControl variant='filled' style={{ marginRight: 20 }}>
             <Select
                 value={qty}
                 onChange={(event) => {
