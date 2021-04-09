@@ -109,9 +109,7 @@ const Cart = () => {
         <div container className={styles.cardContainer}>
             <p style={{ paddingBottom: 20, fontWeight: "bold", fontSize: 40 }}>Panier</p>
             <div className={styles.card}>
-                {cartDelete.length === 0 && (
-                  <p>Votre panier est vide</p>
-                )}
+                {cartDelete.length === 0 && <p>Votre panier est vide</p>}
                 {cart?.map((item, i) => {
                     return (
                         <div className={styles.oneCard} key={item.id}>
@@ -122,7 +120,11 @@ const Cart = () => {
                                         <p className={styles.title}>{item.name}</p>
                                     </ButtonBase>
                                     <p className={styles.title}>Prix unitaire : {Number(item.price).toFixed(2)}€</p>
-                                    <Button style={{ height: "20px", width: "60px", fontFamily: "Karla", fontSize: 10, display: "flex", justifyContent: "center", alignItems: "center" }} type='submit' onClick={() => removeProduct(item.id)}>
+                                    <Button
+                                        style={{ height: "20px", width: "60px", fontFamily: "Karla", fontSize: 10, display: "flex", justifyContent: "center", alignItems: "center" }}
+                                        type='submit'
+                                        onClick={() => removeProduct(item.id)}
+                                    >
                                         Supprimer
                                     </Button>
                                 </div>
@@ -136,7 +138,10 @@ const Cart = () => {
                     );
                 })}
                 <p style={{ display: "flex", justifyContent: "flex-end", marginBottom: 15, fontFamily: "Karla" }}>Frais de livraison: 35 €</p>
-                <p style={{ display: "flex", justifyContent: "flex-end", fontFamily: "Karla" }}>Prix du panier: {Number(totalPrice).toFixed(2)}€</p>
+                <div style={{ display: "flex", flexDirection: "row", justifyContent: "flex-end" }}>
+                    <p style={{ display: "flex", justifyContent: "flex-end", fontFamily: "Karla" }}>Prix du panier: </p>
+                    <p style={{ display: "flex", justifyContent: "flex-end", fontFamily: "Karla" }}> {totalPrice === 0 ? totalPrice : Number(totalPrice + 35).toFixed(2)}€</p>
+                </div>
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
                 {cartDelete.length !== 0 && (
