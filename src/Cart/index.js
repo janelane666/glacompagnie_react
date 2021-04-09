@@ -9,7 +9,8 @@ const useStyles = makeStyles((theme) => ({
     oneCard: {
         display: "flex",
         flexDirection: "row",
-        margin: "1vw"
+        margin: "1vw",
+        marginBottom: 40
     },
     cardContainer: {
         padding: "2vh 8vw",
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     card: { flexDirection: "row" },
     title: {
         fontWeight: "bold",
-        fontSize: 20,
+        fontSize: 13,
         color: colors.black,
         fontFamily: "Karla"
     },
@@ -84,7 +85,6 @@ const Cart = () => {
     };
 
     React.useEffect(() => {
-        const cart = JSON.parse(localStorage.getItem("cart"));
         const priceArray = cart ? cart.map((item) => item.price * item.quantityCart) : [];
         let addedPrice = 0;
 
@@ -92,7 +92,7 @@ const Cart = () => {
             addedPrice += price;
         }
         setTotalPrice(addedPrice);
-    }, [quantityCart, cartDelete]);
+    }, [quantityCart, cartDelete, cart]);
 
     const removeProduct = (item, all = false) => {
         removeFromCart(item, all);
@@ -109,6 +109,9 @@ const Cart = () => {
         <div container className={styles.cardContainer}>
             <p style={{ paddingBottom: 20, fontWeight: "bold", fontSize: 40 }}>Panier</p>
             <div className={styles.card}>
+                {cartDelete.length === 0 && (
+                  <p>Votre panier est vide</p>
+                )}
                 {cart?.map((item, i) => {
                     return (
                         <div className={styles.oneCard} key={item.id}>
@@ -118,12 +121,10 @@ const Cart = () => {
                                     <ButtonBase href={`/Product/${item.slug}/${item.uuid}`}>
                                         <p className={styles.title}>{item.name}</p>
                                     </ButtonBase>
-                                    <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-                                        <p className={styles.title}>Prix unitaire : {Number(item.price).toFixed(2)}€</p>
-                                        <Button style={{ marginBottom: 15, marginLeft: 10, fontFamily: "Karla" }} type='submit' onClick={() => removeProduct(item.id)}>
-                                            Supprimer
-                                        </Button>
-                                    </div>
+                                    <p className={styles.title}>Prix unitaire : {Number(item.price).toFixed(2)}€</p>
+                                    <Button style={{ height: "20px", width: "60px", fontFamily: "Karla", fontSize: 10, display: "flex", justifyContent: "center", alignItems: "center" }} type='submit' onClick={() => removeProduct(item.id)}>
+                                        Supprimer
+                                    </Button>
                                 </div>
                                 <div flexDirection='column' style={{ marginLeft: 20, marginRight: 20 }}>
                                     <p className={styles.quantityCart}>{"Quantité sélectionnée: "}</p>
@@ -138,12 +139,10 @@ const Cart = () => {
                 <p style={{ display: "flex", justifyContent: "flex-end", fontFamily: "Karla" }}>Prix du panier: {Number(totalPrice).toFixed(2)}€</p>
             </div>
             <div style={{ display: "flex", justifyContent: "center" }}>
-                {cartDelete.length ? (
+                {cartDelete.length !== 0 && (
                     <Button className={styles.button} type='submit' onClick={() => removeProduct(null, true)}>
                         Tout Supprimer
                     </Button>
-                ) : (
-                    "c'est vide :c"
                 )}
                 <Button className={styles.button} type='submit' href='/Products'>
                     Continuer mes achats
