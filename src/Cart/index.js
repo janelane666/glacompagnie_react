@@ -48,7 +48,11 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3)
     },
-    button: { margin: 20, fontFamily: "Karla" }
+    button: { margin: 20, fontFamily: "Karla" },
+    modal: {
+        paddingTop: "100px",
+        marginTop: "100px"
+    }
 }));
 
 function rand() {
@@ -155,7 +159,7 @@ const Cart = () => {
                 <Button className={styles.button} onClick={() => setOpenPopUp(true)}>
                     Valider mon panier
                 </Button>
-                <Modal open={openPopUp} onClose={handleClose}>
+                <Modal className={styles.modal} show={openPopUp} onHide={handleClose}>
                     {modalBody}
                 </Modal>
             </div>
