@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Grid } from "@material-ui/core";
 import Navigation from "./components/Header";
 import Routes from "./Routes";
+import "./App.css";
 
 class App extends Component {
     state = {

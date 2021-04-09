@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import { addToCart } from "../components/CartDropdown";
 import CartDropdown from "../components/CartDropdown";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Typography, Grid, Modal } from "@material-ui/core";
+import { Button, Modal } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import rp from "request-promise";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import { BrowserRouter as Redirect } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-    container: { display: "flex", width: "70%", margin: "auto" },
-    image: { width: 300, marginRight: 50 },
-    title: { textAlign: "left", fontWeight: "black" },
-    button: { width: 150, textAlign: "center", backgroundColor: "#fafa" },
+    container: { display: "flex", width: "70%", margin: "auto", marginTop: "10%" },
+    image: { width: 350, marginRight: 50 },
+    title: { textAlign: "left", fontWeight: "bold", fontFamily: "Viga" },
+    button: { width: 150, textAlign: "center", marginRight: 20, fontFamily: "Karla" },
+    text: { fontFamily: "Karla" },
     paper: {
         position: "absolute",
         width: 400,
@@ -52,12 +53,12 @@ const ProductPage = () => {
     };
 
     const modalBody = (
-        <Grid style={modalStyle} className={styles.paper}>
-            <Typography style={{ fontWeight: "bold", display: "flex", justifyContent: "center" }}>Votre panier a été mis à jour.</Typography>
+        <div style={modalStyle} className={styles.paper}>
+            <p style={{ fontWeight: "bold", display: "flex", justifyContent: "center" }}>Votre panier a été mis à jour.</p>
             <Button href='/Products'>Continuer mes achats</Button>
             <Button href='/Cart'>Voir mon panier</Button>
-        </Grid>
-    );    
+        </div>
+    );
 
     React.useEffect(() => {
         rp({
@@ -81,24 +82,29 @@ const ProductPage = () => {
     }, [img, slug, uuid]);
 
     return glacon ? (
-        <Grid className={styles.container}>
-            <Grid>
+        <div className={styles.container}>
+            <div>
                 <img className={styles.image} src={img} alt='glacon' />
-            </Grid>
-            <Grid>
-                <Typography className={styles.title}>{glacon.name}</Typography>
-                <Typography className={styles.description}>{glacon.description}</Typography>
-                <Typography className={styles.price}> Prix : {glacon.price}</Typography>
-                <Button type='submit' onClick={() => {addToCart(glacon, quantityCart); setOpenPopUp(true)}}>
+            </div>
+            <div>
+                <p className={styles.title}>{glacon.name}</p>
+                <p className={styles.text}>{glacon.description}</p>
+                <p className={styles.text}> Prix : {glacon.price}</p>
+                <CartDropdown className={styles.dropdown} glacon={glacon} fromProductPage={true} quantityCart={quantityCart} setQuantityCart={setQuantityCart} />
+                <Button
+                    type='submit'
+                    onClick={() => {
+                        addToCart(glacon, quantityCart);
+                        setOpenPopUp(true);
+                    }}
+                >
                     acheter
                 </Button>
                 <Modal open={openPopUp} onClose={handleClose}>
-                {modalBody}
+                    {modalBody}
                 </Modal>
-
-                <CartDropdown glacon={glacon} fromProductPage={true} quantityCart={quantityCart} setQuantityCart={setQuantityCart} />
-            </Grid>
-        </Grid>
+            </div>
+        </div>
     ) : (
         <Redirect component={ErrorPage} />
     );

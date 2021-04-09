@@ -1,17 +1,15 @@
 import React from "react";
-import { Typography, Grid, Button, ButtonBase, Modal } from "@material-ui/core";
+import { ButtonBase } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "../theme";
 import CartDropdown, { removeFromCart } from "../components/CartDropdown.js";
+import { Button, Modal } from "react-bootstrap";
 
 const useStyles = makeStyles((theme) => ({
     oneCard: {
         display: "flex",
         flexDirection: "row",
-        // backgroundColor: "#ECE9E9",
         margin: "1vw"
-        // width: 300,
-        // height: 160
     },
     cardContainer: {
         padding: "2vh 8vw",
@@ -21,11 +19,13 @@ const useStyles = makeStyles((theme) => ({
     title: {
         fontWeight: "bold",
         fontSize: 20,
-        color: colors.black
+        color: colors.black,
+        fontFamily: "Karla"
     },
     description: {
         fontStyle: "italic",
-        color: colors.grey
+        color: colors.grey,
+        fontFamily: "Karla"
     },
     priceAndQuantity: {
         display: "flex",
@@ -34,10 +34,11 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: "0px"
     },
     price: {
-        fontWeight: "bold",
-        color: colors.black
+        color: colors.black,
+        fontFamily: "Karla"
     },
-    quantity: { color: colors.grey },
+    quantityCart: { fontFamily: "Karla" },
+    quantity: { color: colors.grey, fontFamily: "Karla" },
     paper: {
         position: "absolute",
         width: 400,
@@ -45,7 +46,8 @@ const useStyles = makeStyles((theme) => ({
         border: "2px solid #000",
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3)
-    }
+    },
+    button: { margin: 20, fontFamily: "Karla" }
 }));
 
 function rand() {
@@ -98,60 +100,62 @@ const Cart = () => {
     };
 
     const modalBody = (
-        <Grid style={modalStyle} className={styles.paper}>
-            <Typography style={{ fontWeight: "bold", display: "flex", justifyContent: "center" }}>Votre panier a bien été validé</Typography>
-        </Grid>
+        <div style={modalStyle} className={styles.paper}>
+            <p style={{ fontWeight: "bold", display: "flex", justifyContent: "center" }}>Votre panier a bien été validé</p>
+        </div>
     );
 
     return (
-        <Grid container className={styles.cardContainer}>
-            <Typography style={{ paddingBottom: 20, fontWeight: "bold", fontSize: 40 }}>Panier</Typography>
-            <Grid className={styles.card}>
+        <div container className={styles.cardContainer}>
+            <p style={{ paddingBottom: 20, fontWeight: "bold", fontSize: 40 }}>Panier</p>
+            <div className={styles.card}>
                 {cart?.map((item, i) => {
                     return (
-                        <Grid className={styles.oneCard} key={item.id}>
+                        <div className={styles.oneCard} key={item.id}>
                             <>
                                 <img width='50' height='50' src={item.header ? `data:image/png;base64,${item.header}` : defaultImg} alt='glacon' />
-                                <Grid flexDirection='column' style={{ marginLeft: 20, marginRight: 20, width: 400 }}>
+                                <div flexDirection='column' style={{ marginLeft: 20, marginRight: 20, width: 400 }}>
                                     <ButtonBase href={`/Product/${item.slug}/${item.uuid}`}>
-                                        <Typography className={styles.title}>{item.name}</Typography>
+                                        <p className={styles.title}>{item.name}</p>
                                     </ButtonBase>
-                                    <Grid style={{ display: "flex", flexDirection: "row" }}>
-                                        <Typography className={styles.title}>Prix unitaire : {Number(item.price).toFixed(2)}€</Typography>
-                                        <Button type='submit' onClick={() => removeProduct(item.id)}>
+                                    <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+                                        <p className={styles.title}>Prix unitaire : {Number(item.price).toFixed(2)}€</p>
+                                        <Button style={{ marginBottom: 15, marginLeft: 10, fontFamily: "Karla" }} type='submit' onClick={() => removeProduct(item.id)}>
                                             Supprimer
                                         </Button>
-                                    </Grid>
-                                </Grid>
-                                <Grid flexDirection='column' style={{ marginLeft: 20, marginRight: 20 }}>
-                                    <Typography className={styles.quantityCart}>{"Quantité sélectionnée: "}</Typography>
+                                    </div>
+                                </div>
+                                <div flexDirection='column' style={{ marginLeft: 20, marginRight: 20 }}>
+                                    <p className={styles.quantityCart}>{"Quantité sélectionnée: "}</p>
                                     <CartDropdown glacon={item} fromProductPage={false} quantityCart={item.quantityCart} setQuantityCart={setQuantityCart} />
-                                </Grid>
-                                <Typography className={styles.price}>Prix total : {Number(item.price * item.quantityCart).toFixed(2)}€</Typography>
+                                </div>
+                                <p className={styles.price}>Prix total : {Number(item.price * item.quantityCart).toFixed(2)}€</p>
                             </>
-                        </Grid>
+                        </div>
                     );
                 })}
-                <Typography style={{ display: "flex", justifyContent: "flex-end", marginBottom: 15 }}>Frais de livraison: 35 €</Typography>
-                <Typography style={{ display: "flex", justifyContent: "flex-end" }}>Prix du panier: {Number(totalPrice).toFixed(2)}€</Typography>
-            </Grid>
-            {cartDelete.length ? (
-                <Button style={{ width: 150, display: "flex", alignSelf: "center" }} type='submit' onClick={() => removeProduct(null, true)}>
-                    Tout Supprimer
+                <p style={{ display: "flex", justifyContent: "flex-end", marginBottom: 15, fontFamily: "Karla" }}>Frais de livraison: 35 €</p>
+                <p style={{ display: "flex", justifyContent: "flex-end", fontFamily: "Karla" }}>Prix du panier: {Number(totalPrice).toFixed(2)}€</p>
+            </div>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+                {cartDelete.length ? (
+                    <Button className={styles.button} type='submit' onClick={() => removeProduct(null, true)}>
+                        Tout Supprimer
+                    </Button>
+                ) : (
+                    "c'est vide :c"
+                )}
+                <Button className={styles.button} type='submit' href='/Products'>
+                    Continuer mes achats
                 </Button>
-            ) : (
-                "c'est vide :c"
-            )}
-            <Button type='submit' href='/Products'>
-                Continuer mes achats
-            </Button>
-            <Button style={{ width: 200, display: "flex", alignSelf: "center" }} onClick={() => setOpenPopUp(true)}>
-                Valider mon panier
-            </Button>
-            <Modal open={openPopUp} onClose={handleClose}>
-                {modalBody}
-            </Modal>
-        </Grid>
+                <Button className={styles.button} onClick={() => setOpenPopUp(true)}>
+                    Valider mon panier
+                </Button>
+                <Modal open={openPopUp} onClose={handleClose}>
+                    {modalBody}
+                </Modal>
+            </div>
+        </div>
     );
 };
 

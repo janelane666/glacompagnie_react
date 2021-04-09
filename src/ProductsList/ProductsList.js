@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import GlaconCards from "../components/GlaconCard";
-import { Grid, Typography } from "@material-ui/core";
+import "../App.css";
 const rp = require("request-promise");
 
 const Products = () => {
@@ -19,10 +19,10 @@ const Products = () => {
     localStorage.setItem("glacons", JSON.stringify(glacons));
 
     return (
-        <Grid style={{ display: "flex", justifyContent: "center", padding: 30, flexDirection: "column" }}>
-            <Typography style={{ alignSelf: "center", paddingBottom: 20 }}>Articles disponibles</Typography>
+        <div style={{ display: "flex", justifyContent: "center", padding: 30, flexDirection: "column" }}>
+            <h1 style={{ alignSelf: "center", paddingBottom: 20, fontFamily: "Viga", fontWeight: "bold" }}>Articles disponibles</h1>
             <GlaconCards glacons={glacons} />
-        </Grid>
+        </div>
     );
 };
 
