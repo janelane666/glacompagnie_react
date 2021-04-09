@@ -52,7 +52,14 @@ const useStyles = makeStyles((theme) => ({
     modal: {
         paddingTop: "100px",
         marginTop: "100px"
-    }
+    },
+    productSummary: { marginLeft: 20, marginRight: 20, width: 400 },
+    shippingCost: { display: "flex", justifyContent: "flex-end", marginBottom: 15, fontFamily: "Karla" },
+    text: { fontFamily: "Karla" },
+    totalPriceContainer: { display: "flex", flexDirection: "row", justifyContent: "flex-end" },
+    quantityContainer: { marginLeft: 20, marginRight: 20 },
+    deleteButton: { height: "20px", width: "60px", fontFamily: "Karla", fontSize: 10, display: "flex", justifyContent: "center", alignItems: "center" },
+    summaryCartContainer: { display: "flex", justifyContent: "center" }
 }));
 
 function rand() {
@@ -119,20 +126,16 @@ const Cart = () => {
                         <div className={styles.oneCard} key={item.id}>
                             <>
                                 <img width='50' height='50' src={item.header ? `data:image/png;base64,${item.header}` : defaultImg} alt='glacon' />
-                                <div flexDirection='column' style={{ marginLeft: 20, marginRight: 20, width: 400 }}>
+                                <div flexDirection='column' className={styles.productSummary}>
                                     <ButtonBase href={`/Product/${item.slug}/${item.uuid}`}>
                                         <p className={styles.title}>{item.name}</p>
                                     </ButtonBase>
                                     <p className={styles.title}>Prix unitaire : {Number(item.price).toFixed(2)}€</p>
-                                    <Button
-                                        style={{ height: "20px", width: "60px", fontFamily: "Karla", fontSize: 10, display: "flex", justifyContent: "center", alignItems: "center" }}
-                                        type='submit'
-                                        onClick={() => removeProduct(item.id)}
-                                    >
+                                    <Button className={styles.deleteButton} type='submit' onClick={() => removeProduct(item.id)}>
                                         Supprimer
                                     </Button>
                                 </div>
-                                <div flexDirection='column' style={{ marginLeft: 20, marginRight: 20 }}>
+                                <div flexDirection='column' className={styles.quantityContainer}>
                                     <p className={styles.quantityCart}>{"Quantité sélectionnée: "}</p>
                                     <CartDropdown glacon={item} fromProductPage={false} quantityCart={item.quantityCart} setQuantityCart={setQuantityCart} />
                                 </div>
@@ -141,13 +144,13 @@ const Cart = () => {
                         </div>
                     );
                 })}
-                <p style={{ display: "flex", justifyContent: "flex-end", marginBottom: 15, fontFamily: "Karla" }}>Frais de livraison: 35 €</p>
-                <div style={{ display: "flex", flexDirection: "row", justifyContent: "flex-end" }}>
-                    <p style={{ display: "flex", justifyContent: "flex-end", fontFamily: "Karla" }}>Prix du panier: </p>
-                    <p style={{ display: "flex", justifyContent: "flex-end", fontFamily: "Karla" }}> {totalPrice === 0 ? totalPrice : Number(totalPrice + 35).toFixed(2)}€</p>
+                <p className={styles.shippingCost}>Frais de livraison: 35 €</p>
+                <div className={styles.totalPriceContainer}>
+                    <p className={styles.text}>Prix du panier: </p>
+                    <p className={styles.text}> {totalPrice === 0 ? totalPrice : Number(totalPrice + 35).toFixed(2)}€</p>
                 </div>
             </div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div className={styles.summaryCartContainer}>
                 {cartDelete.length !== 0 && (
                     <Button className={styles.button} type='submit' onClick={() => removeProduct(null, true)}>
                         Tout Supprimer
