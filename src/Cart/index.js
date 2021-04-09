@@ -14,7 +14,10 @@ const useStyles = makeStyles((theme) => ({
     },
     cardContainer: {
         padding: "2vh 8vw",
-        flexDirection: "column"
+        flexDirection: "column",
+        [theme.breakpoints.down("sm")]: {
+            paddingLeft: 10
+        }
     },
     card: { flexDirection: "row" },
     title: {
@@ -59,7 +62,14 @@ const useStyles = makeStyles((theme) => ({
     totalPriceContainer: { display: "flex", flexDirection: "row", justifyContent: "flex-end" },
     quantityContainer: { marginLeft: 20, marginRight: 20 },
     deleteButton: { height: "20px", width: "60px", fontFamily: "Karla", fontSize: 10, display: "flex", justifyContent: "center", alignItems: "center" },
-    summaryCartContainer: { display: "flex", justifyContent: "center" }
+    summaryCartContainer: {
+        display: "flex",
+        justifyContent: "center",
+        [theme.breakpoints.down("xs")]: {
+            display: "flex",
+            flexDirection: "column"
+        }
+    }
 }));
 
 function rand() {
@@ -136,7 +146,7 @@ const Cart = () => {
                                     </Button>
                                 </div>
                                 <div flexDirection='column' className={styles.quantityContainer}>
-                                    <p className={styles.quantityCart}>{"Quantité sélectionnée: "}</p>
+                                    <p className={styles.quantityCart}>Quantité sélectionnée:</p>
                                     <CartDropdown glacon={item} fromProductPage={false} quantityCart={item.quantityCart} setQuantityCart={setQuantityCart} />
                                 </div>
                                 <p className={styles.price}>Prix total : {Number(item.price * item.quantityCart).toFixed(2)}€</p>
