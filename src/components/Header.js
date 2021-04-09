@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Badge } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -11,6 +11,8 @@ const useStyles = makeStyles(() => ({
 
 const Navigation = () => {
     const styles = useStyles();
+    const cart = JSON.parse(localStorage.getItem("cart"));
+
 
     return (
         <Navbar variant='primary' className={styles.container}>
@@ -29,8 +31,9 @@ const Navigation = () => {
                         </Nav.Link>
                     </div>
                     <div>
-                        <Nav.Link href='/Cart' id='cart' style={{ display: "flex", flexDirection: "column", justifyContent: "flex-end", color: "#EDE7E3", fontWeight: "bold", fontFamily: "Karla" }}>
+                        <Nav.Link href='/Cart' id='cart' style={{ display: "flex", flexDirection: "row", justifyContent: "flex-end", color: "#EDE7E3", fontWeight: "bold", fontFamily: "Karla" }}>
                             PANIER
+                            <Badge variant="danger">{cart.length}</Badge>
                         </Nav.Link>
                     </div>
                 </Nav>
