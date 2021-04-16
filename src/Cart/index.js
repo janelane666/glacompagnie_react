@@ -97,9 +97,10 @@ const Cart = () => {
     const cart = JSON.parse(localStorage.getItem("cart"));
     const [quantityCart, setQuantityCart] = React.useState();
     const [totalPrice, setTotalPrice] = React.useState();
-    let defaultImg = "https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg";
+    const defaultImg = "https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg";
     const [openPopUp, setOpenPopUp] = React.useState(false);
     const [modalStyle] = React.useState(getModalStyle);
+    let img = defaultImg;
 
     const handleClose = () => {
         setOpenPopUp(false);
@@ -132,10 +133,16 @@ const Cart = () => {
             <div className={styles.card}>
                 {cartDelete.length === 0 && <p>Votre panier est vide</p>}
                 {cart?.map((item, i) => {
+                    if (item.thumbnail && item.thumbnail.includes("://")) {
+                        img = item.thumbnail;
+                    } else {
+                        img = item.thumbnail ? `data:image/png;base64,${item.thumbnail}` : defaultImg;
+                    }
+
                     return (
                         <div className={styles.oneCard} key={item.id}>
                             <>
-                                <img width='50' height='50' src={item.header ? `data:image/png;base64,${item.header}` : defaultImg} alt='glacon' />
+                                <img width='50' height='50' style={{ "object-fit": "contain" }} src={img} alt='glacon' />
                                 <div flexDirection='column' className={styles.productSummary}>
                                     <ButtonBase href={`/Product/${item.slug}/${item.uuid}`}>
                                         <p className={styles.title}>{item.name}</p>
@@ -160,11 +167,11 @@ const Cart = () => {
                 </div>
             </div>
             <div className={styles.summaryCartContainer}>
-                {cartDelete.length !== 0 && (
+                {cartDelete.length ? (
                     <Button className={styles.button} type='submit' onClick={() => removeProduct(null, true)}>
                         Tout Supprimer
                     </Button>
-                )}
+                ) : null}
                 <Button className={styles.button} type='submit' href='/Products'>
                     Continuer mes achats
                 </Button>
