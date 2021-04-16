@@ -25,7 +25,15 @@ const defaultTheme = createMuiTheme({
 
 const theme = createMuiTheme({
     ...defaultTheme,
-
+    breakpoints: {
+        values: {
+            xs: 0,
+            sm: 700,
+            md: 1100,
+            lg: 1400,
+            xl: 1600
+        }
+    },
     overrides: {
         MuiCardContent: {
             root: {
