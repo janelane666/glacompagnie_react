@@ -1,8 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { colors } from "../theme";
 import mountain from "../image/mountain.png";
-import { Button, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 const useStyles = makeStyles((theme) => ({
     align: { display: "flex", justifyContent: "center", marginTop: "10%" },
