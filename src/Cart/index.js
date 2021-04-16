@@ -156,8 +156,7 @@ const Cart = () => {
                 })}
                 <p className={styles.shippingCost}>Frais de livraison: 35 €</p>
                 <div className={styles.totalPriceContainer}>
-                    <p className={styles.text}>Prix du panier: </p>
-                    <p className={styles.text}> {totalPrice === 0 ? totalPrice : Number(totalPrice + 35).toFixed(2)}€</p>
+                    <p className={styles.text}>Prix du panier: {totalPrice === 0 ? totalPrice : Number(totalPrice + 35).toFixed(2)}€</p>
                 </div>
             </div>
             <div className={styles.summaryCartContainer}>
