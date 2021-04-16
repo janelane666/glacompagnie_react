@@ -4,7 +4,7 @@ import mountain from "../image/mountain.png";
 import { Button } from "react-bootstrap";
 
 const useStyles = makeStyles((theme) => ({
-    align: { display: "flex", justifyContent: "center", marginTop: "10%" },
+    align: { display: "flex", justifyContent: "center", marginTop: "5%" },
     name: {
         fontFamily: "Viga",
         display: "flex",
