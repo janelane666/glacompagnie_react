@@ -56,7 +56,7 @@ const Navigation = () => {
                     <div>
                         <Nav.Link href='/Cart' id='link' className={styles.cartContainer}>
                             PANIER
-                            {cart.length !== 0 && (
+                            {cart && cart.length !== 0 && (
                                 <Badge style={{ marginLeft: 5, alignSelf: "center" }} variant='warning'>
                                     {cart.length}
                                 </Badge>

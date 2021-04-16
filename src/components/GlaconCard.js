@@ -23,22 +23,26 @@ const GlaconCards = ({ glacons }) => {
 
     return (
         <div container className={styles.cardContainer}>
-            {glacons.map((glacon) => (
-                <ButtonBase href={`/Product/${glacon.slug}/${glacon.uuid}`}>
-                    <Card key={glacon.id} style={{ width: "18rem", margin: 20 }}>
-                        <Card.Img src={glacon.header ? `data:image/png;base64,${glacon.header}` : fullGlacons} alt='glacon' />
-                        <Card.Body>
-                            <Card.Title className={styles.name}>{glacon.name}</Card.Title>
-                            <Card.Text className={styles.text}>{glacon.description}</Card.Text>
-                            <Card.Text className={styles.text}>Quantité : {glacon.quantity}</Card.Text>
-                            <Card.Text className={styles.text}>{glacon.price} €</Card.Text>
-                            <Button className={styles.button} variant='primary'>
-                                Ajouter au panier
-                            </Button>
-                        </Card.Body>
-                    </Card>
-                </ButtonBase>
-            ))}
+            {glacons.map((glacon) => {
+                return (
+                    glacon.quantity > 0 && (
+                        <ButtonBase href={`/Product/${glacon.slug}/${glacon.uuid}`}>
+                            <Card key={glacon.id} style={{ width: "18rem", margin: 20 }}>
+                                <Card.Img src={glacon.header ? `data:image/png;base64,${glacon.header}` : fullGlacons} alt='glacon' />
+                                <Card.Body>
+                                    <Card.Title className={styles.name}>{glacon.name}</Card.Title>
+                                    <Card.Text className={styles.text}>{glacon.description}</Card.Text>
+                                    <Card.Text className={styles.text}>Quantité : {glacon.quantity}</Card.Text>
+                                    <Card.Text className={styles.text}>{glacon.price} €</Card.Text>
+                                    <Button className={styles.button} variant='primary'>
+                                        Ajouter au panier
+                                    </Button>
+                                </Card.Body>
+                            </Card>
+                        </ButtonBase>
+                    )
+                );
+            })}
         </div>
     );
 };
