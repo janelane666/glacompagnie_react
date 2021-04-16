@@ -14,7 +14,7 @@ export default class Routes extends Component {
         return (
             <Router history={history}>
                 <Switch>
-                    <Route exact path='/' component={Products} />
+                    <Route exact path='/' component={Home} />
                     <Route path='/Home' component={Home} />
                     <Route path='/Products' component={Products} />
                     <Route path='/Contact' component={Contact} />
