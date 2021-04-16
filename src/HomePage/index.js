@@ -48,16 +48,8 @@ const useStyles = makeStyles((theme) => ({
         marginRight: "auto",
         marginLeft: "auto",
         textAlign: "center",
-        width: "10%",
-        fontFamily: "Karla",
-        [theme.breakpoints.only("sm")]: {
-            width: "22%",
-            paddingLeft: 15
-        },
-        [theme.breakpoints.only("xs")]: {
-            width: "45%",
-            paddingLeft: 15
-        }
+        width: 160,
+        fontFamily: "Karla"
     },
     image: {
         display: "flex",
