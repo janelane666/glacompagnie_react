@@ -27,7 +27,7 @@ const AddToCartButton = ({ buttonText, glacon, quantityCart }) => {
             <Button
                 className={styles.button}
                 type='submit'
-                variant='success'
+                variant='primary'
                 onClick={() => {
                     addToCart(glacon, quantityCart);
                     setOpenPopUp(true);
