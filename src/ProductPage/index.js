@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { addToCart } from "../components/CartDropdown";
+import AddToCartButton from "../components/AddToCartButton";
 import CartDropdown from "../components/CartDropdown";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Modal } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import rp from "request-promise";
 import ErrorPage from "../ErrorPage/ErrorPage";
@@ -10,7 +9,7 @@ import { BrowserRouter as Redirect } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     container: { display: "flex", width: "70%", margin: "auto", marginTop: "10%", justifyContent: "center" },
-    image: { width: 400, marginRight: 50, boxShadow: "10px 5px 5px grey", borderRadius: 20 },
+    image: { width: 400, marginRight: 50, boxShadow: "2.5px 2.5px 2.5px grey", borderRadius: 20 },
     title: { textAlign: "left", fontWeight: "bold", fontFamily: "Viga", fontSize: 25 },
     button: { width: 150, textAlign: "center", marginRight: 20, fontFamily: "Karla" },
     text: { fontFamily: "Karla" },
@@ -31,39 +30,12 @@ const useStyles = makeStyles((theme) => ({
     textsContainer: { width: 400, padding: 30 }
 }));
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
-
-    return {
-        top: `${top}%`,
-        left: `${left}%`,
-        transform: `translate(-${top}%, -${left}%)`
-    };
-}
-
 const ProductPage = () => {
     const styles = useStyles();
     const [glacon, setGlacon] = useState([]);
     const { uuid, slug } = useParams();
     const [quantityCart, setQuantityCart] = useState(1);
     const [img, setImg] = useState("https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg");
-    const [openPopUp, setOpenPopUp] = React.useState(false);
-    const [modalStyle] = React.useState(getModalStyle);
-
-    const handleClose = () => {
-        setOpenPopUp(false);
-    };
-
-    const modalBody = (
-        <div style={modalStyle} className={styles.paper}>
-            <p style={{ fontWeight: "bold", display: "flex", justifyContent: "center", paddingTop: "20px" }}>{glacon.name} a été bien ajouté à votre panier.</p>
-        </div>
-    );
 
     React.useEffect(() => {
         rp({
@@ -97,19 +69,7 @@ const ProductPage = () => {
                 <div style={{ borderTop: "1px solid", width: 200, borderColor: "lightgrey", marginBottom: 10 }} />
                 <p className={styles.price}> Prix : {glacon.price} €</p>
                 <CartDropdown className={styles.dropdown} glacon={glacon} fromProductPage={true} quantityCart={quantityCart} setQuantityCart={setQuantityCart} />
-                <Button
-                    type='submit'
-                    variant='success'
-                    onClick={() => {
-                        addToCart(glacon, quantityCart);
-                        setOpenPopUp(true);
-                    }}
-                >
-                    Acheter
-                </Button>
-                <Modal show={openPopUp} onHide={handleClose} className={styles.modal}>
-                    {modalBody}
-                </Modal>
+                <AddToCartButton glacon={glacon} quantityCart={quantityCart} />
                 <p className={styles.quantityText}> Il reste encore {glacon.quantity} glacons de disponible</p>
             </div>
         </div>

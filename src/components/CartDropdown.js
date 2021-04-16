@@ -47,6 +47,7 @@ export const removeFromCart = (id, all = false) => {
         if (item.id !== id) {
             return item;
         }
+        return null;
     });
 
     localStorage.setItem("cart", JSON.stringify(newCart, null, 2));
