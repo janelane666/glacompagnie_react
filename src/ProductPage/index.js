@@ -48,7 +48,11 @@ const ProductPage = () => {
                 return;
             }
 
-            setImg(res && res.header ? `data:image/png;base64,${res.header}` : img);
+            if (res.header && res.header.includes("://")) {
+                setImg(res.header);
+            } else {
+                setImg(res && res.header ? `data:image/png;base64,${res.header}` : img);
+            }
 
             const cart = JSON.parse(localStorage.getItem("cart"));
 

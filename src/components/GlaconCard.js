@@ -20,17 +20,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const GlaconCards = ({ glacons }) => {
+    let img = fullGlacons;
+
     const styles = useStyles();
 
     return (
         <div container className={styles.cardContainer}>
             {glacons.map((glacon) => {
+                if (glacon.thumbnail && glacon.thumbnail.includes("://")) {
+                    img = glacon.thumbnail;
+                } else {
+                    img = glacon.thumbnail ? `data:image/png;base64,${glacon.thumbnail}` : fullGlacons;
+                }
+
                 return (
                     glacon.quantity > 0 && (
                         <Card key={glacon.id} style={{ width: "18rem", margin: 20 }}>
                             <ButtonBase href={`/Product/${glacon.slug}/${glacon.uuid}`}>
                                 <Card.Body>
-                                    <Card.Img src={glacon.header ? `data:image/png;base64,${glacon.header}` : fullGlacons} alt='glacon' />
+                                    <Card.Img width='348' height='145' style={{ "object-fit": "contain" }} src={img} alt='glacon' />
                                     <Card.Title className={styles.name}>{glacon.name.length > 19 ? glacon.name.slice(0, 19) + "..." : glacon.name}</Card.Title>
                                     <Card.Text className={styles.text}>{glacon.description.length > 19 ? glacon.description.slice(0, 25) + "..." : glacon.description}</Card.Text>
                                     <Card.Text className={styles.text}>Quantité : {glacon.quantity}</Card.Text>
