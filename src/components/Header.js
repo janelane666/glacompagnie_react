@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Navigation = () => {
     const styles = useStyles();
-    const cart = JSON.parse(localStorage.getItem("cart"));
+    const [cart, setCart] = React.useState();
+    React.useEffect(() => {setCart(JSON.parse(localStorage.getItem("cart")))}, [cart]);
 
     return (
         <Navbar collapseOnSelect expand='md' variant='light' className={styles.container}>
