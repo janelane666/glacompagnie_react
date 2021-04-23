@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ProductPage = () => {
     const styles = useStyles();
-    const [glacon, setGlacon] = useState([]);
+    const [glacon, setGlacon] = useState({});
     const { uuid, slug } = useParams();
     const [quantityCart, setQuantityCart] = useState(1);
     const [img, setImg] = useState("https://www.lca-aroma.com/img/cms/photos%20recettes%20cuisine/douche%20effet%20gla%C3%A7on.jpg");
@@ -62,14 +62,15 @@ const ProductPage = () => {
         });
     }, [img, slug, uuid]);
 
-    return glacon ? (
+    return glacon && Object.keys(glacon).length ? (
         <div className={styles.container}>
             <div>
                 <img className={styles.image} src={img} alt='glacon' />
             </div>
             <div className={styles.textsContainer}>
                 <p className={styles.title}>{glacon.name}</p>
-                <p className={styles.text}>{glacon.description}</p>
+                <p className={styles.text}>{glacon.description[0].toUpperCase() + glacon.description.substr(1).toLowerCase()
+                }</p>
                 <div style={{ borderTop: "1px solid", width: 200, borderColor: "lightgrey", marginBottom: 10 }} />
                 <p className={styles.price}> Prix : {glacon.price} €</p>
                 <CartDropdown className={styles.dropdown} glacon={glacon} fromProductPage={true} quantityCart={quantityCart} setQuantityCart={setQuantityCart} />

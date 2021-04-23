@@ -13,6 +13,14 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: "wrap",
         justifyContent: "center"
     },
+    card: {
+        width: "18rem",
+        margin: 20,
+        "&:hover": {
+
+        },
+    },
+    description: { fontFamily: "Karla" },
     name: { fontFamily: "Viga", marginTop: 10 },
     text: { fontFamily: "Karla" },
     quantity: { color: colors.grey },
@@ -33,14 +41,17 @@ const GlaconCards = ({ glacons }) => {
                     img = glacon.thumbnail ? `data:image/png;base64,${glacon.thumbnail}` : fullGlacons;
                 }
 
+                glacon.description = glacon.description.length > 19 ? glacon.description.slice(0, 25) + "..." : glacon.description
+                glacon.description = glacon.description[0].toUpperCase() + glacon.description.substr(1).toLowerCase()
+
                 return (
                     glacon.quantity > 0 && (
-                        <Card key={glacon.id} style={{ width: "18rem", margin: 20 }}>
+                        <Card key={glacon.id} className={styles.card}>
                             <ButtonBase href={`/Product/${glacon.slug}/${glacon.uuid}`}>
                                 <Card.Body>
                                     <Card.Img width='348' height='145' style={{ "object-fit": "contain" }} src={img} alt='glacon' />
                                     <Card.Title className={styles.name}>{glacon.name.length > 19 ? glacon.name.slice(0, 19) + "..." : glacon.name}</Card.Title>
-                                    <Card.Text className={styles.text}>{glacon.description.length > 19 ? glacon.description.slice(0, 25) + "..." : glacon.description}</Card.Text>
+                                    <Card.Text className={styles.description}>{glacon.description}</Card.Text>
                                     <Card.Text className={styles.text}>Quantité : {glacon.quantity}</Card.Text>
                                     <Card.Text className={styles.text}>{glacon.price} €</Card.Text>
                                 </Card.Body>
