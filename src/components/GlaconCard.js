@@ -15,16 +15,16 @@ const useStyles = makeStyles((theme) => ({
     },
     card: {
         width: "18rem",
-        margin: 20,
-        "&:hover": {
-
-        },
+        margin: 20
     },
-    description: { fontFamily: "Karla" },
     name: { fontFamily: "Viga", marginTop: 10 },
     text: { fontFamily: "Karla" },
     quantity: { color: colors.grey },
-    button: { width: "100%", fontFamily: "Karla" }
+    button: { width: "100%", fontFamily: "Karla" },
+    cardImg: {
+        width: 348,
+        height: 145,
+    }
 }));
 
 const GlaconCards = ({ glacons }) => {
@@ -49,9 +49,9 @@ const GlaconCards = ({ glacons }) => {
                         <Card key={glacon.id} className={styles.card}>
                             <ButtonBase href={`/Product/${glacon.slug}/${glacon.uuid}`}>
                                 <Card.Body>
-                                    <Card.Img width='348' height='145' style={{ "object-fit": "contain" }} src={img} alt='glacon' />
+                                    <Card.Img className={styles.cardImg} style={{"object-fit": "contain"}} src={img} alt='glacon' />
                                     <Card.Title className={styles.name}>{glacon.name.length > 19 ? glacon.name.slice(0, 19) + "..." : glacon.name}</Card.Title>
-                                    <Card.Text className={styles.description}>{glacon.description}</Card.Text>
+                                    <Card.Text className={styles.text}>{glacon.description}</Card.Text>
                                     <Card.Text className={styles.text}>Quantité : {glacon.quantity}</Card.Text>
                                     <Card.Text className={styles.text}>{glacon.price} €</Card.Text>
                                 </Card.Body>
