@@ -4,6 +4,7 @@ import "./App.css";
 import Footer from "./components/Footer";
 import Navigation from "./components/Header";
 import Routes from "./Routes";
+import BasketContextProvider from "./Contexts/BasketContextProvider/index";
 
 class App extends Component {
     state = {
@@ -22,9 +23,11 @@ class App extends Component {
     render() {
         return (
             <Grid>
-                <Navigation />
-                <Routes />
-                <Footer />
+                <BasketContextProvider>
+                    <Navigation />
+                    <Routes />
+                    <Footer />
+                </BasketContextProvider>
             </Grid>
         );
     }

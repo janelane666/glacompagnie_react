@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar, Nav, Badge } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import { useBasket } from "../Contexts/BasketContextProvider/index";
 
 const useStyles = makeStyles((theme) => ({
     container: { background: "linear-gradient(135deg, #e66465, #9198e5)", width: "100%" },
@@ -35,9 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Navigation = () => {
     const styles = useStyles();
-    const [cart, setCart] = React.useState();
-    React.useEffect(() => {setCart(JSON.parse(localStorage.getItem("cart")))}, [cart]);
-
+    const {cart} = useBasket();
     return (
         <Navbar collapseOnSelect expand='md' variant='light' className={styles.container}>
             <Navbar.Brand className={styles.buttonHomePage} href='/Home'>
