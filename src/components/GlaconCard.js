@@ -17,13 +17,13 @@ const useStyles = makeStyles((theme) => ({
         width: "18rem",
         margin: 20
     },
-    name: { fontFamily: "Viga", marginTop: 10 },
-    text: { fontFamily: "Karla" },
+    name: { fontFamily: "Viga", marginTop: 10, paddingLeft: 40 },
+    text: { fontFamily: "Karla", paddingLeft: 40 },
     quantity: { color: colors.grey },
     button: { width: "100%", fontFamily: "Karla" },
     cardImg: {
-        width: 348,
-        height: 145,
+        width: 320,
+        height: 125
     }
 }));
 
@@ -41,15 +41,15 @@ const GlaconCards = ({ glacons }) => {
                     img = glacon.thumbnail ? `data:image/png;base64,${glacon.thumbnail}` : fullGlacons;
                 }
 
-                glacon.description = glacon.description.length > 19 ? glacon.description.slice(0, 25) + "..." : glacon.description
-                glacon.description = glacon.description[0].toUpperCase() + glacon.description.substr(1).toLowerCase()
+                glacon.description = glacon.description.length > 19 ? glacon.description.slice(0, 25) + "..." : glacon.description;
+                glacon.description = glacon.description[0].toUpperCase() + glacon.description.substr(1).toLowerCase();
 
                 return (
                     glacon.quantity > 0 && (
                         <Card key={glacon.id} className={styles.card}>
                             <ButtonBase href={`/Product/${glacon.slug}/${glacon.uuid}`}>
                                 <Card.Body>
-                                    <Card.Img className={styles.cardImg} style={{"object-fit": "contain"}} src={img} alt='glacon' />
+                                    <Card.Img className={styles.cardImg} style={{ "object-fit": "contain" }} src={img} alt='glacon' />
                                     <Card.Title className={styles.name}>{glacon.name.length > 19 ? glacon.name.slice(0, 19) + "..." : glacon.name}</Card.Title>
                                     <Card.Text className={styles.text}>{glacon.description}</Card.Text>
                                     <Card.Text className={styles.text}>Quantité : {glacon.quantity}</Card.Text>
