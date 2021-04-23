@@ -1,7 +1,9 @@
 import React from "react";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
+// import FormControl from "@material-ui/core/FormControl";
+import Menu from "@material-ui/core/Menu";
+import Button from "@material-ui/core/Button";
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 
 export const addToCart = (glacon, quantityCart) => {
     if (!localStorage.getItem("cart")) {
@@ -37,7 +39,6 @@ export const removeFromCart = (id, all = false) => {
         return;
     }
 
-    console.log(all);
     if (all) {
         localStorage.setItem("cart", "[]");
         return;
@@ -59,24 +60,39 @@ const CartDropdown = ({ glacon, fromProductPage, quantityCart, setQuantityCart }
         if (qty !== quantityCart) setQuantityCart(qty);
     }, [qty, quantityCart, setQuantityCart]);
 
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     return (
-        <FormControl variant='filled' style={{ marginRight: 20 }}>
-            <Select
-                value={qty}
-                onChange={(event) => {
-                    setQty(event.target.value);
-                    if (!fromProductPage) {
-                        addToCart(glacon, event.target.value);
-                    }
-                }}
-            >
+        <>
+            <Button aria-controls='simple-menu' aria-haspopup='true' onClick={handleClick} style={{ border: "1px solid" }}>
+                {qty}
+                <KeyboardArrowDownIcon style={{ marginLeft: 20, height: 40 }} />
+            </Button>
+            <Menu anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
                 {[...Array(glacon.quantity > 0 ? (glacon.quantity < 50 ? glacon.quantity : 50) : 0).keys()].map((i) => (
-                    <MenuItem value={i + 1} key={i}>
+                    <MenuItem
+                        value={i + 1}
+                        key={i}
+                        onClick={(event) => {
+                            setQty(event.target.value);
+                            if (!fromProductPage) {
+                                addToCart(glacon, event.target.value);
+                            }
+                        }}
+                    >
                         {i + 1}
                     </MenuItem>
                 ))}
-            </Select>
-        </FormControl>
+            </Menu>
+        </>
     );
 };
 

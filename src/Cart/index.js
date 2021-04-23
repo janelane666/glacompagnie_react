@@ -1,16 +1,24 @@
 import React from "react";
-import { ButtonBase } from "@material-ui/core";
+import { ButtonBase, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { colors } from "../theme";
 import CartDropdown, { removeFromCart } from "../components/CartDropdown.js";
 import { Button, Modal } from "react-bootstrap";
+import theme from "../theme";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     oneCard: {
         display: "flex",
         flexDirection: "row",
         margin: "1vw",
-        marginBottom: 40
+        marginBottom: 40,
+        paddingBottom: 20,
+        borderBottom: "1px solid lightgrey",
+        [theme.breakpoints.only("xs")]: {
+            height: 370,
+            marginBottom: 50,
+            paddingBottom: 40
+        }
     },
     cardContainer: {
         padding: "2vh 8vw",
@@ -22,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     card: { flexDirection: "row" },
     title: {
         fontWeight: "bold",
-        fontSize: 13,
+        fontSize: 20,
         color: colors.black,
         fontFamily: "Karla"
     },
@@ -39,9 +47,11 @@ const useStyles = makeStyles((theme) => ({
     },
     price: {
         color: colors.black,
-        fontFamily: "Karla"
+        fontFamily: "Karla",
+        paddingTop: 7,
+        marginRight: 30
     },
-    quantityCart: { fontFamily: "Karla" },
+    quantityCart: { fontFamily: "Karla", marginRight: 30, paddingTop: 7 },
     quantity: { color: colors.grey, fontFamily: "Karla" },
     paper: {
         position: "absolute",
@@ -60,13 +70,31 @@ const useStyles = makeStyles((theme) => ({
     shippingCost: { display: "flex", justifyContent: "flex-end", marginBottom: 15, fontFamily: "Karla" },
     text: { fontFamily: "Karla" },
     totalPriceContainer: { display: "flex", flexDirection: "row", justifyContent: "flex-end" },
-    quantityContainer: { marginLeft: 20, marginRight: 20 },
-    deleteButton: { height: "20px", width: "60px", fontFamily: "Karla", fontSize: 10, display: "flex", justifyContent: "center", alignItems: "center" },
+    quantityContainer: {
+        marginRight: 20,
+        display: "flex",
+        flexDirection: "row",
+        height: 40,
+        [theme.breakpoints.only("xs")]: {
+            marginLeft: 25
+        }
+    },
+    deleteButton: { height: "40px", width: "100px", fontFamily: "Karla", fontSize: 15, display: "flex", justifyContent: "center", alignItems: "center" },
     summaryCartContainer: {
         display: "flex",
         justifyContent: "center",
         [theme.breakpoints.down("xs")]: {
             display: "flex",
+            flexDirection: "column"
+        }
+    },
+    priceAndSuppr: {
+        display: "flex",
+        flexDirection: "row",
+        height: 40,
+        [theme.breakpoints.only("xs")]: {
+            marginTop: 20,
+            marginLeft: 25,
             flexDirection: "column"
         }
     }
@@ -140,25 +168,35 @@ const Cart = () => {
                     }
 
                     return (
-                        <div className={styles.oneCard} key={item.id}>
+                        <Grid container className={styles.oneCard} key={item.id}>
                             <>
-                                <img width='50' height='50' style={{ "object-fit": "contain" }} src={img} alt='glacon' />
-                                <div flexDirection='column' className={styles.productSummary}>
+                                <img
+                                    width='50'
+                                    height='50'
+                                    style={{
+                                        "object-fit": "contain"
+                                    }}
+                                    src={img}
+                                    alt='glacon'
+                                />
+                                <Grid item xs={12} md={4} flexDirection='column' className={styles.productSummary}>
                                     <ButtonBase href={`/Product/${item.slug}/${item.uuid}`}>
                                         <p className={styles.title}>{item.name}</p>
                                     </ButtonBase>
                                     <p className={styles.title}>Prix unitaire : {Number(item.price).toFixed(2)}€</p>
+                                </Grid>
+                                <Grid item xs={12} md={4} className={styles.quantityContainer}>
+                                    <p className={styles.quantityCart}>Quantité sélectionnée:</p>
+                                    <CartDropdown glacon={item} fromProductPage={false} quantityCart={item.quantityCart} setQuantityCart={setQuantityCart} />
+                                </Grid>
+                                <Grid item xs={12} md={3} className={styles.priceAndSuppr}>
+                                    <p className={styles.price}>Prix total : {Number(item.price * item.quantityCart).toFixed(2)}€</p>
                                     <Button className={styles.deleteButton} type='submit' onClick={() => removeProduct(item.id)}>
                                         Supprimer
                                     </Button>
-                                </div>
-                                <div flexDirection='column' className={styles.quantityContainer}>
-                                    <p className={styles.quantityCart}>Quantité sélectionnée:</p>
-                                    <CartDropdown glacon={item} fromProductPage={false} quantityCart={item.quantityCart} setQuantityCart={setQuantityCart} />
-                                </div>
-                                <p className={styles.price}>Prix total : {Number(item.price * item.quantityCart).toFixed(2)}€</p>
+                                </Grid>
                             </>
-                        </div>
+                        </Grid>
                     );
                 })}
                 <p className={styles.shippingCost}>Frais de livraison: 35 €</p>

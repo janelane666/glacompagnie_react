@@ -15,12 +15,20 @@ const useStyles = makeStyles((theme) => ({
     },
     card: {
         width: "18rem",
-        margin: 20
+        margin: 20,
+        "&:hover": {
+            textDecoration: "none"
+        }
     },
     name: { fontFamily: "Viga", marginTop: 10, paddingLeft: 40 },
-    text: { fontFamily: "Karla", paddingLeft: 40 },
+    text: {
+        fontFamily: "Karla",
+        paddingLeft: 40,
+        "&:hover": {
+            color: "#18B7BE"
+        }
+    },
     quantity: { color: colors.grey },
-    button: { width: "100%", fontFamily: "Karla" },
     cardImg: {
         width: 320,
         height: 125
@@ -47,7 +55,7 @@ const GlaconCards = ({ glacons }) => {
                 return (
                     glacon.quantity > 0 && (
                         <Card key={glacon.id} className={styles.card}>
-                            <ButtonBase href={`/Product/${glacon.slug}/${glacon.uuid}`}>
+                            <ButtonBase href={`/Product/${glacon.slug}/${glacon.uuid}`} style={{ textDecoration: "none" }}>
                                 <Card.Body>
                                     <Card.Img className={styles.cardImg} style={{ "object-fit": "contain" }} src={img} alt='glacon' />
                                     <Card.Title className={styles.name}>{glacon.name.length > 19 ? glacon.name.slice(0, 19) + "..." : glacon.name}</Card.Title>
